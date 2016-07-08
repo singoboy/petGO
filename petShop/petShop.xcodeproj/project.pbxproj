@@ -73,25 +73,15 @@
 		4768A8CC1D24AE4D00C71C91 /* petShop */ = {
 			isa = PBXGroup;
 			children = (
-				4EC932501D2D3C9A004E637C /* CoreDataHelper.h */,
-				4EC932511D2D3C9A004E637C /* CoreDataHelper.m */,
+				4E918F8B1D2F4E5100F79408 /* View */,
+				4E918F8A1D2F4E4400F79408 /* Model */,
+				4E918F891D2F4E1900F79408 /* Controller */,
 				4768A8D01D24AE4D00C71C91 /* AppDelegate.h */,
 				4768A8D11D24AE4D00C71C91 /* AppDelegate.m */,
-				4768A8D61D24AE4D00C71C91 /* Main.storyboard */,
 				4768A8D91D24AE4D00C71C91 /* Assets.xcassets */,
 				4768A8DB1D24AE4D00C71C91 /* LaunchScreen.storyboard */,
 				4768A8DE1D24AE4D00C71C91 /* Info.plist */,
 				4768A8CD1D24AE4D00C71C91 /* Supporting Files */,
-				4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */,
-				4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */,
-				4EC932471D2D2CBE004E637C /* ShoppingCartCtrl.h */,
-				4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */,
-				4EC9324A1D2D2D8C004E637C /* Product.h */,
-				4EC9324B1D2D2D8C004E637C /* Product.m */,
-				4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */,
-				4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */,
-				4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */,
-				4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */,
 			);
 			path = petShop;
 			sourceTree = "<group>";
@@ -102,6 +92,40 @@
 				4768A8CE1D24AE4D00C71C91 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4E918F891D2F4E1900F79408 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */,
+				4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */,
+				4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */,
+				4EC932471D2D2CBE004E637C /* ShoppingCartCtrl.h */,
+				4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */,
+				4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */,
+				4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4E918F8A1D2F4E4400F79408 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EC932501D2D3C9A004E637C /* CoreDataHelper.h */,
+				4EC932511D2D3C9A004E637C /* CoreDataHelper.m */,
+				4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */,
+				4EC9324A1D2D2D8C004E637C /* Product.h */,
+				4EC9324B1D2D2D8C004E637C /* Product.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4E918F8B1D2F4E5100F79408 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4768A8D61D24AE4D00C71C91 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
