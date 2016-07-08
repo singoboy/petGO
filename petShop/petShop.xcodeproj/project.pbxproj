@@ -13,6 +13,7 @@
 		4768A8DA1D24AE4D00C71C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8D91D24AE4D00C71C91 /* Assets.xcassets */; };
 		4768A8DD1D24AE4D00C71C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8DB1D24AE4D00C71C91 /* LaunchScreen.storyboard */; };
 		4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */; };
+		4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */; };
 		4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */; };
 		4EC9324C1D2D2D8C004E637C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324B1D2D2D8C004E637C /* Product.m */; };
 		4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */; };
@@ -31,6 +32,8 @@
 		4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListCtrl.h; sourceTree = "<group>"; };
 		4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListCtrl.m; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
+		4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutCtrl.h; sourceTree = "<group>"; };
+		4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutCtrl.m; sourceTree = "<group>"; };
 		4EC932471D2D2CBE004E637C /* ShoppingCartCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartCtrl.h; sourceTree = "<group>"; };
 		4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartCtrl.m; sourceTree = "<group>"; };
 		4EC9324A1D2D2D8C004E637C /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				4EC9324B1D2D2D8C004E637C /* Product.m */,
 				4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */,
 				4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */,
+				4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */,
+				4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */,
 			);
 			path = petShop;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				4EC9324C1D2D2D8C004E637C /* Product.m in Sources */,
 				4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */,
 				4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */,
+				4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */,
 				4768A8D21D24AE4D00C71C91 /* AppDelegate.m in Sources */,
 				4768A8CF1D24AE4D00C71C91 /* main.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
