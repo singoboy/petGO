@@ -58,17 +58,16 @@
 - (IBAction)payAction:(id)sender {
        NSString *orderResponse = [self addProductOrder];
         if ([orderResponse  isEqualToString:@"error"]) {
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:@"提示" message:@"結帳失敗"
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *alertAction =
-            [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
-            [alertController addAction:alertAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            [self showUIAlertCtrl:@"結帳失敗"];
             return;
         }
-//    NSString *orderID = @"TEST";
-//    [self addProductDetail:orderID];
+    for (int i = 0; i<productList.count;  i++) {
+            [self addProductDetail:orderResponse withProduct:productList[i]];
+    }
+   //此處因該再做detail筆數的確認
+ 
+    [self showUIAlertCtrl:@"訂單已生成"];
+    
 }
 
 -(NSString *)addProductOrder{
@@ -84,25 +83,11 @@
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    NSLog(@"result %@",result);
     return result ;
 }
 
--(NSString *)addProductDetail:(NSString*)orderID{
-    
-    NSMutableArray *array =[NSMutableArray array];
-    
-//    for (int i = 0 ;i< productList.count ; i++) {
-// 
-//        Product *product =productList[i];
-//        //     NSLog(@"productList = %@" ,product.name);
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        [dic setObject:product.productID forKey:@"productID"];
-//        [dic setObject:product.name forKey:@"name"];
-//        [dic setObject:product.price forKey:@"price"];
-//
-//        [array addObject:dic];
-//    }
+
+-(NSString *)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
     
         //使用get 傳productList 　會超過256 上限
         NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/addDetail.php"];
@@ -112,9 +97,8 @@
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                            timeoutInterval:60.0];
         [request setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"orderID=%@&productList=%@",orderID,array];
+        NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@",orderID,product.productID,product.name,product.price];
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    
     
         NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
@@ -126,7 +110,7 @@
 }
 
 -(NSString *)deleteProductOrder:(NSString*)orderID{
-    return @"3";
+    return @"";
 }
 
 -(NSInteger )getTotalPrice{
@@ -141,6 +125,17 @@
     
 }
 
+-(void)showUIAlertCtrl:(NSString *)message{
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"提示" message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
