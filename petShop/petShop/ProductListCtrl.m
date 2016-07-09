@@ -67,7 +67,7 @@
     
     NSDictionary *item = self.productArray[indexPath.row];
     
-    NSLog(@"item= %@",item);
+    //NSLog(@"item= %@",item);
     
     cell.textLabel.text =  [item objectForKey: @"name"];
     

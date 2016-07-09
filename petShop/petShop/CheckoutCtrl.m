@@ -42,7 +42,7 @@
         }
         else{
             [productList addObjectsFromArray:results];
-            NSLog(@"productList_count= %lu",(unsigned long)productList.count);
+            //    NSLog(@"productList_count= %lu",(unsigned long)productList.count);
         }
     }
     return self;
@@ -54,14 +54,55 @@
     // Do any additional setup after loading the view.
 }
 
-
+//This is workaroud !!
 - (IBAction)payAction:(id)sender {
+   NSString *orderResponse = [self addProductOrder];
+
+    if ([orderResponse  isEqualToString:@"error"]) {
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"提示" message:@"結帳失敗"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *alertAction =
+        [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:alertAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    NSLog(@"here");
+    
 }
 
+-(NSString *)addProductOrder{
+    
+    NSInteger total = [self getTotalPrice];
+    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php?total=%ld",(long)total];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 
+    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 
+    return result ;
+}
 
--(void)getTotalPrice{
+-(NSString *)addProductDetail:(NSString*)orderID{
+    NSInteger total = [self getTotalPrice];
+    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php?total=%ld",(long)total];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    
+    return result ;
+    
+}
+
+-(NSString *)deleteProductOrder:(NSString*)orderID{
+    return @"3";
+}
+
+-(NSInteger )getTotalPrice{
     NSInteger totalPrice  = 0;
     
     for (Product* element in productList) {
@@ -69,21 +110,24 @@
     }
     
     _totalLabel.text=[NSString stringWithFormat:@"總共 %ld 元" ,(long)totalPrice];
+    return totalPrice ;
     
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
