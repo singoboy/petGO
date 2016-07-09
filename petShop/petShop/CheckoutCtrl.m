@@ -56,45 +56,72 @@
 
 //This is workaroud !!
 - (IBAction)payAction:(id)sender {
-   NSString *orderResponse = [self addProductOrder];
-
-    if ([orderResponse  isEqualToString:@"error"]) {
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"提示" message:@"結帳失敗"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *alertAction =
-        [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:alertAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
-    }
-    NSLog(@"here");
-    
+       NSString *orderResponse = [self addProductOrder];
+        if ([orderResponse  isEqualToString:@"error"]) {
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:@"提示" message:@"結帳失敗"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *alertAction =
+            [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:alertAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            return;
+        }
+//    NSString *orderID = @"TEST";
+//    [self addProductDetail:orderID];
 }
 
 -(NSString *)addProductOrder{
     
     NSInteger total = [self getTotalPrice];
-    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php?total=%ld",(long)total];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"total=%ld",total];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-
+    NSLog(@"result %@",result);
     return result ;
 }
 
 -(NSString *)addProductDetail:(NSString*)orderID{
-    NSInteger total = [self getTotalPrice];
-    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php?total=%ld",(long)total];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSMutableArray *array =[NSMutableArray array];
     
-    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+//    for (int i = 0 ;i< productList.count ; i++) {
+// 
+//        Product *product =productList[i];
+//        //     NSLog(@"productList = %@" ,product.name);
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        [dic setObject:product.productID forKey:@"productID"];
+//        [dic setObject:product.name forKey:@"name"];
+//        [dic setObject:product.price forKey:@"price"];
+//
+//        [array addObject:dic];
+//    }
     
-    return result ;
+        //使用get 傳productList 　會超過256 上限
+        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/addDetail.php"];
+        NSURL *url = [NSURL URLWithString:urlStr];
+    
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
+        [request setHTTPMethod:@"POST"];
+        NSString *postString = [NSString stringWithFormat:@"orderID=%@&productList=%@",orderID,array];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+        NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        NSLog(@"result= %@",result);
+       return result ;
+    
     
 }
 
