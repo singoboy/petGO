@@ -114,8 +114,9 @@
     
     [context save:nil];
     
-    //FIXME this is not a good choice to get viewCtrl
-    ShoppingCartCtrl *shoppingCartCtrl= (ShoppingCartCtrl *)  [self.tabBarController.viewControllers objectAtIndex:1];
+    //FIXME this is not a good method to get viewCtrl
+    UINavigationController *navi =[self.tabBarController.viewControllers objectAtIndex:1 ];
+    ShoppingCartCtrl *shoppingCartCtrl = [navi.viewControllers objectAtIndex:0];
     self.delegate = shoppingCartCtrl;
     [self.delegate didUpdateCar:product];
     
@@ -135,9 +136,7 @@
     
 }
 
--(void)didUpdateCar:(Product *)product{
-    
-}
+
 
 /*
  // Override to support conditional editing of the table view.

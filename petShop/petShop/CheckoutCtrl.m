@@ -79,9 +79,12 @@
         NSLog(@"error saving %@",error);
     }
     [self.delegate clearProducts];
-    [self showUIAlertCtrl:@"訂單已生成"];
+ //   [self showUIAlertCtrl:@"訂單已生成"];
     
-      /*以下方法無法切換畫面   只好改用navigation */
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+      /* Note  畫面會被UIAlertCtrl卡住無法切換  */
 //    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
 //    [self presentViewController:productListCtrl animated:YES completion:nil];
     
