@@ -31,6 +31,7 @@
 		4768A8DE1D24AE4D00C71C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListCtrl.h; sourceTree = "<group>"; };
 		4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListCtrl.m; sourceTree = "<group>"; };
+		4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutDelegate.h; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
 		4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutCtrl.h; sourceTree = "<group>"; };
 		4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutCtrl.m; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 				4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */,
 				4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */,
 				4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */,
+				4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

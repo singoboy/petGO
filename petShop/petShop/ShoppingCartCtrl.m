@@ -9,6 +9,7 @@
 #import "ShoppingCartCtrl.h"
 #import "CoreDataHelper.h"
 #import "Product.h"
+#import "CheckoutCtrl.h"
 
 
 @interface ShoppingCartCtrl ()<UITableViewDataSource,UITableViewDelegate>
@@ -32,7 +33,7 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-
+        
         productList = [NSMutableArray array];
         //query from coredata
         NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
@@ -129,7 +130,7 @@
 
 //FIXME  not_work_with_reloadRowsAtIndexPaths
 -(void)didUpdateCar:(Product *)product{
-
+    
     [productList addObject:product];
     NSInteger index = [productList indexOfObject:product];
     NSLog(@"index %ld",(long)index);
@@ -143,9 +144,23 @@
     [self.tableView endUpdates];
     
     [self getTotalPrice];
-
-   //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     //[self.tableView reloadData];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"checkout"]) {
+        CheckoutCtrl *checkoutCtrl =segue.destinationViewController;
+        checkoutCtrl.delegate = self ;
+    }
+}
+
+
+-(void)clearProducts{
+    productList = [NSMutableArray array];
+   [self.tableView reloadData];
+   [self getTotalPrice];
 }
 
 -(void)getTotalPrice{
@@ -156,7 +171,7 @@
     }
     
     _totalLabel.text=[NSString stringWithFormat:@"總共 %ld 元" ,(long)totalPrice];
-
+    
 }
 
 -(IBAction)returnShopCar:(UIStoryboardSegue *)segue{

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CheckoutDelegate.h"
 
 @interface CheckoutCtrl : UIViewController
-
+@property id<CheckoutDelegate>  delegate;
 @end

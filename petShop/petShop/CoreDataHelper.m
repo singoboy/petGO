@@ -69,6 +69,7 @@ static CoreDataHelper *instance;
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"data.sqlite"];
+        NSLog(@"storeUR=%@",storeURL);
     NSError *error = nil;
     
     //自動根據schema更新,將options放入addPersistentStoreWithType中的options參數 78行

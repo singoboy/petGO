@@ -65,7 +65,19 @@
             [self addProductDetail:orderResponse withProduct:productList[i]];
     }
    //此處因該再做detail筆數的確認
- 
+    
+    //刪除coreData內的資料
+    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
+    for (int i = 0; i<productList.count;  i++) {
+        Product *product = productList[i];
+        [helper.managedObjectContext deleteObject:product];
+    }
+    NSError *error = nil ;
+    [helper.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"error saving %@",error);
+    }
+    [self.delegate clearProducts];
     [self showUIAlertCtrl:@"訂單已生成"];
     
 }
@@ -103,9 +115,8 @@
         NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
         NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-        NSLog(@"result= %@",result);
+//        NSLog(@"result= %@",result);
        return result ;
-    
     
 }
 

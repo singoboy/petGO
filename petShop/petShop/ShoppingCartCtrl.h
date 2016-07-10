@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductDelegate.h"
-@interface ShoppingCartCtrl : UIViewController<ProductDelegate>
+#import "CheckoutDelegate.h"
+@interface ShoppingCartCtrl : UIViewController<ProductDelegate,CheckoutDelegate>
 
 @end
