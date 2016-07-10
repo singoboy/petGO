@@ -274,7 +274,7 @@
         <!--PetGo-->
         <scene sceneID="qOA-Wi-YaP">
             <objects>
-                <tableViewController id="73w-dQ-DP0" customClass="ProductListCtrl" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="productListCtrl" id="73w-dQ-DP0" customClass="ProductListCtrl" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sDy-6a-Yj5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

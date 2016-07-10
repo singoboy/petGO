@@ -9,6 +9,7 @@
 #import "CheckoutCtrl.h"
 #import "CoreDataHelper.h"
 #import "Product.h"
+#import "ProductListCtrl.h"
 
 @interface CheckoutCtrl ()
 {
@@ -79,6 +80,10 @@
     }
     [self.delegate clearProducts];
     [self showUIAlertCtrl:@"訂單已生成"];
+    
+      /*以下方法無法切換畫面   只好改用navigation */
+//    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
+//    [self presentViewController:productListCtrl animated:YES completion:nil];
     
 }
 
