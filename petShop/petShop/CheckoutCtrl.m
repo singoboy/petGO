@@ -83,6 +83,9 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
+    // Note 表示切換畫面後還會往下執行
+    [self.delegate showUIAlertCtrl:@"訂單已生成"];
+    
     
       /* Note  畫面會被UIAlertCtrl卡住無法切換  */
 //    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];

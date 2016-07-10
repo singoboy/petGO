@@ -178,6 +178,18 @@
     
 }
 
+-(void)showUIAlertCtrl:(NSString *)message{
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"提示" message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 /*
  #pragma mark - Navigation
  

@@ -10,4 +10,5 @@
 
 @protocol CheckoutDelegate <NSObject>
 -(void)clearProducts;
+-(void)showUIAlertCtrl:(NSString *)message;
 @end
