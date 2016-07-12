@@ -18,6 +18,8 @@
 		4EC9324C1D2D2D8C004E637C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324B1D2D2D8C004E637C /* Product.m */; };
 		4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */; };
 		4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC932511D2D3C9A004E637C /* CoreDataHelper.m */; };
+		4EF724C41D35340D006E638A /* SalonCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF724C31D35340D006E638A /* SalonCtrl.m */; };
+		4EF724C71D353459006E638A /* ReserveCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF724C61D353459006E638A /* ReserveCtrl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,10 @@
 		4EC9324E1D2D39C7004E637C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4EC932501D2D3C9A004E637C /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		4EC932511D2D3C9A004E637C /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		4EF724C21D35340D006E638A /* SalonCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonCtrl.h; sourceTree = "<group>"; };
+		4EF724C31D35340D006E638A /* SalonCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonCtrl.m; sourceTree = "<group>"; };
+		4EF724C51D353459006E638A /* ReserveCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveCtrl.h; sourceTree = "<group>"; };
+		4EF724C61D353459006E638A /* ReserveCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveCtrl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,10 @@
 				4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */,
 				4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */,
 				4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */,
+				4EF724C21D35340D006E638A /* SalonCtrl.h */,
+				4EF724C31D35340D006E638A /* SalonCtrl.m */,
+				4EF724C51D353459006E638A /* ReserveCtrl.h */,
+				4EF724C61D353459006E638A /* ReserveCtrl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -204,8 +214,10 @@
 				4EC9324C1D2D2D8C004E637C /* Product.m in Sources */,
 				4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */,
 				4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */,
+				4EF724C41D35340D006E638A /* SalonCtrl.m in Sources */,
 				4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */,
 				4768A8D21D24AE4D00C71C91 /* AppDelegate.m in Sources */,
+				4EF724C71D353459006E638A /* ReserveCtrl.m in Sources */,
 				4768A8CF1D24AE4D00C71C91 /* main.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
 			);
