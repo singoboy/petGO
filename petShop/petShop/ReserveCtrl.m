@@ -50,7 +50,7 @@
     
     // check
     NSString *status = [self checkReserveStatus:pickStr];
-    /* 去除多餘的換行符號   */
+    /* 去除多餘的換行符號   取回mysql的資料時會被加上換行符號*/
     status  = [status  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
     NSLog(@"status= %@",status);
     if ([status isEqualToString:@"no"]) {
@@ -58,9 +58,17 @@
         return ;
     }
     
-    
     //insert
+    NSString *addStatus = [self addReserve:pickStr];
+    NSLog(@"addStatus=%@",addStatus);
+    if ([addStatus isEqualToString:@"error"]) {
+        [self showUIAlertCtrl:@"資料庫新增失敗"];
+        return ;
+    }
     
+    if ([addStatus isEqualToString:@"ok"]) {
+        [self showUIAlertCtrl:@"預約成功"];
+    }
     
 }
 
@@ -78,7 +86,21 @@
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    return result;
+}
+
+-(NSString *)addReserve:(NSString *)time{
     
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_add.php"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"reserveTime=%@",time ];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     return result;
 }
 
