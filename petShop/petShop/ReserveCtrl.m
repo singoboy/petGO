@@ -11,6 +11,7 @@
 @interface ReserveCtrl (){
     NSDate *adjustTime ;
     NSDateFormatter *dateFormat;
+    NSDate *pickerDate ;
 }
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
@@ -35,43 +36,84 @@
 }
 
 - (IBAction)clickTime:(id)sender {
+    
+    //先驗證時間
+    NSString *result = [self checkTime];
+    if ([result isEqualToString:@"error"]) {
+        return ;
+    }
+    
+    //  對DB做處理
+    pickerDate = _timePicker.date;
+    dateFormat.dateFormat = @"YYYY-MM-dd H:mm:ss";
+    NSString *pickStr = [dateFormat stringFromDate:pickerDate];
+    
+    // check
+    NSString *status = [self checkReserveStatus:pickStr];
+    /* 去除多餘的換行符號   */
+    status  = [status  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+    NSLog(@"status= %@",status);
+    if ([status isEqualToString:@"no"]) {
+        [self showUIAlertCtrl:@"有人預約嚕"];
+        return ;
+    }
+    
+    
+    //insert
+    
+    
+}
+
+-(NSString *)checkReserveStatus:(NSString *) time{
+    
+    //INSERT INTO `reserve`( `R_TIME`, `R_MEMBER_ID`) VALUES ('2016-07-14 19:00:00',null)
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_check.php"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"reserveTime=%@",time ];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    
+    return result;
+}
+
+
+
+-(NSString *)checkTime{
     //先判斷是否在現在日期之後
-    NSDate *pickerDate = _timePicker.date;
+    pickerDate = _timePicker.date;
     NSTimeInterval interval =  [pickerDate timeIntervalSinceDate:adjustTime]     ;
     if (interval == 0) {
         [self showUIAlertCtrl:@"請選擇未來的時間"];
-        return;  //不往下執行
+        return @"error";
     }
     
     dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setCalendar: [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]];
     //判斷是否在預約時間 10:00~2100
-        dateFormat.dateFormat = @"H";
-        NSInteger hourInteger =[[dateFormat stringFromDate:pickerDate] integerValue];
+    dateFormat.dateFormat = @"H";
+    NSInteger hourInteger =[[dateFormat stringFromDate:pickerDate] integerValue];
     NSLog(@"hourInteger=%ld",(long)hourInteger);
-    if (hourInteger>21 || hourInteger==0) {
-        [self showUIAlertCtrl:@"已關店"];
-        return;
+    if (hourInteger>21 || hourInteger<9) {
+        [self showUIAlertCtrl:@"未營業"];
+        return @"error";
     }
     
-    if (hourInteger<9) {
-        [self showUIAlertCtrl:@"尚未營業"];
-        return;
-    }
-
     //判斷是否選擇 30
-
-        dateFormat.dateFormat = @"mm";
-        NSString *minuteStr = [dateFormat stringFromDate:pickerDate];
+    dateFormat.dateFormat = @"mm";
+    NSString *minuteStr = [dateFormat stringFromDate:pickerDate];
     if ([minuteStr isEqualToString:@"30"]) {
         [self showUIAlertCtrl:@"請選擇整點"];
-        return;  //不往下執行
+        return @"error";
     }
-    
-    //  開始接受預約
-    
-    
+    return @"" ;
 }
+
 
 -(void)showUIAlertCtrl:(NSString *)message{
     
@@ -92,13 +134,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

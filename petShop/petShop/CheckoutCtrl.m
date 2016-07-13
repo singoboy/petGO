@@ -96,7 +96,7 @@
 -(NSString *)addProductOrder{
     
     NSInteger total = [self getTotalPrice];
-    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/addOrder.php"];
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/order_add.php"];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -113,7 +113,7 @@
 -(NSString *)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
     
         //使用get 傳productList 　會超過256 上限
-        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/addDetail.php"];
+        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add.php"];
         NSURL *url = [NSURL URLWithString:urlStr];
     
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
