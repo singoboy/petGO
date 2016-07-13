@@ -50,7 +50,7 @@
     
     // check
     NSString *status = [self checkReserveStatus:pickStr];
-    /* 去除多餘的換行符號   取回mysql的資料時會被加上換行符號*/
+    /* 去除多餘的換行符號   取回mysql的資料時不知為何會被加上換行符號*/
     status  = [status  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
     NSLog(@"status= %@",status);
     if ([status isEqualToString:@"no"]) {
