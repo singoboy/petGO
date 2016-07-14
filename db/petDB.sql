@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Jul 13, 2016 at 02:54 PM
+-- Generation Time: Jul 14, 2016 at 03:04 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -122,7 +122,7 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `price` int(50) NOT NULL,
   `imageName` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `product`
@@ -143,17 +143,17 @@ CREATE TABLE `reserve` (
 `R_ID` int(11) NOT NULL,
   `R_TIME` datetime DEFAULT NULL,
   `R_MEMBER_ID` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `reserve`
 --
 
 INSERT INTO `reserve` (`R_ID`, `R_TIME`, `R_MEMBER_ID`) VALUES
-(1, '2016-07-14 19:00:00', NULL),
-(2, '2016-07-14 20:00:00', NULL),
-(3, '2016-07-14 15:00:00', NULL),
-(4, '2016-07-14 16:00:00', NULL);
+(3, '2016-07-13 11:00:00', NULL),
+(9, '2016-07-14 16:00:00', NULL),
+(10, '2016-07-14 17:00:00', NULL),
+(11, '2016-07-15 17:00:00', NULL);
 
 --
 -- Indexes for dumped tables
@@ -212,12 +212,12 @@ MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
