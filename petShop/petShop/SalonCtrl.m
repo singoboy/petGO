@@ -44,10 +44,11 @@
     [super viewDidLoad];
     self.tableView.dataSource=self ;
     self.tableView.delegate =self;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // Do any additional setup after loading the view.
 }
-
+#pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return reserveArray.count;
@@ -68,6 +69,24 @@
     
     return cell;
 }
+
+#pragma mark UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];  //點了 不會一直是在選取狀態
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle== UITableViewCellEditingStyleDelete) {
+        // 去 db刪
+        NSError *error = nil ;
+        //從array 刪去那一筆
+   //     [productList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    }
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

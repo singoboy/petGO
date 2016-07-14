@@ -70,6 +70,7 @@
     [super viewDidLoad];
     self.tableView.dataSource=self;
     self.tableView.delegate=self ;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     [self getTotalPrice];
     
     // Do any additional setup after loading the view.
@@ -159,8 +160,8 @@
 
 -(void)clearProducts{
     productList = [NSMutableArray array];
-   [self.tableView reloadData];
-   [self getTotalPrice];
+    [self.tableView reloadData];
+    [self getTotalPrice];
 }
 
 -(void)getTotalPrice{

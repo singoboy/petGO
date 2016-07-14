@@ -21,13 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/product_json.php"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    self.productArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-    [self.tableView reloadData];
-    
     //    NSLog(@"productJson= %@",self.productArray);
     
     //      NSLog(@"count= %lu",(unsigned long)self.productArray.count);
@@ -45,6 +38,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/product_json.php"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    self.productArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table view data source
 
