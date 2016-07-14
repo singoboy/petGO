@@ -12,7 +12,7 @@
 
 
 @interface ProductListCtrl ()
-@property NSArray *productArray ;
+@property NSMutableArray *productArray ;
 
 @end
 

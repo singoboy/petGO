@@ -10,7 +10,7 @@
 
 @interface SalonCtrl ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSArray *reserveArray ;
+    NSMutableArray *reserveArray ;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,7 +31,10 @@
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
     NSError *error = nil;
-    reserveArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
+     NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    reserveArray = [jsonArray mutableCopy];
     
     if (error != nil) {
         NSLog(@"Error parsing JSON.");
@@ -48,6 +51,8 @@
     
     // Do any additional setup after loading the view.
 }
+
+
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -74,12 +79,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];  //點了 不會一直是在選取狀態
 }
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated{
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:animated];
+    
+}
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
         // 去 db刪
-        NSError *error = nil ;
         //從array 刪去那一筆
-   //     [productList removeObjectAtIndex:indexPath.row];
+        
+        [reserveArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
     }
