@@ -138,18 +138,23 @@
                                     <action selector="clickTime:" destination="IEB-k0-StF" eventType="valueChanged" id="xIB-t4-v8p"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7t-hQ-r8Z">
-                                <rect key="frame" x="34" y="404" width="168" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-ne-jcJ">
+                                <rect key="frame" x="34" y="409.5" width="266" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3Yp-ne-jcJ" secondAttribute="trailing" constant="20" id="96E-Uf-UQh"/>
+                            <constraint firstItem="3Yp-ne-jcJ" firstAttribute="leading" secondItem="mgK-Ku-WqO" secondAttribute="leading" constant="34" id="Ugm-TI-ubQ"/>
+                            <constraint firstItem="UKx-oJ-VxY" firstAttribute="top" secondItem="3Yp-ne-jcJ" secondAttribute="bottom" constant="88" id="iJZ-nJ-b13"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="textLabel" destination="k7t-hQ-r8Z" id="ZC9-pd-blb"/>
+                        <outlet property="textLabel" destination="3Yp-ne-jcJ" id="95Z-vS-anl"/>
                         <outlet property="timePicker" destination="v0V-cF-cOA" id="lzo-ne-4so"/>
                     </connections>
                 </viewController>

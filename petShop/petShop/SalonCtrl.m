@@ -89,6 +89,27 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
         // 去 db刪
+        
+        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_delete.php"];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
+        [request setHTTPMethod:@"POST"];
+           NSDictionary *item = reserveArray[indexPath.row];
+           NSInteger R_ID = [item[@"R_ID"] integerValue] ;
+        
+        NSString *postString = [NSString stringWithFormat:@"R_ID=%d",R_ID];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        NSLog(@"result=%@",result);
+        if ([result isEqualToString:@"error"]) {
+            [self showUIAlertCtrl:@"DB刪除失敗"];
+            return;
+        }
+        
+        
         //從array 刪去那一筆
         
         [reserveArray removeObjectAtIndex:indexPath.row];
@@ -103,6 +124,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)showUIAlertCtrl:(NSString *)message{
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"提示" message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 /*

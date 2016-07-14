@@ -14,6 +14,8 @@
     NSDate *pickerDate ;
 }
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
@@ -22,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textLabel.text = @"預約時間為早上10點~晚上9點";
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
