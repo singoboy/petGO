@@ -16,6 +16,7 @@
 		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
 		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
 		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
+		4E7ADC421D38FE9B009163B8 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7ADC411D38FE9B009163B8 /* Member.m */; };
 		4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */; };
 		4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */; };
 		4EC9324C1D2D2D8C004E637C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324B1D2D2D8C004E637C /* Product.m */; };
@@ -45,6 +46,8 @@
 		47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
 		4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutDelegate.h; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
+		4E7ADC401D38FE9B009163B8 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		4E7ADC411D38FE9B009163B8 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 		4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutCtrl.h; sourceTree = "<group>"; };
 		4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutCtrl.m; sourceTree = "<group>"; };
 		4EC932471D2D2CBE004E637C /* ShoppingCartCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartCtrl.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				4EC9324D1D2D39C7004E637C /* DataModel.xcdatamodeld */,
 				4EC9324A1D2D2D8C004E637C /* Product.h */,
 				4EC9324B1D2D2D8C004E637C /* Product.m */,
+				4E7ADC401D38FE9B009163B8 /* Member.h */,
+				4E7ADC411D38FE9B009163B8 /* Member.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */,
 				4EF724C71D353459006E638A /* ReserveCtrl.m in Sources */,
 				4768A8CF1D24AE4D00C71C91 /* main.m in Sources */,
+				4E7ADC421D38FE9B009163B8 /* Member.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
 				47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */,
 			);
