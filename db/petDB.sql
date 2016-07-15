@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.5
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Jul 15, 2016 at 04:34 PM
--- Server version: 5.5.38
--- PHP Version: 5.5.14
+-- Host: localhost
+-- Generation Time: Jul 15, 2016 at 09:36 PM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `petDB`
@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `detail` (
-`D_ID` int(11) NOT NULL,
+  `D_ID` int(11) NOT NULL,
   `D_OrderID` varchar(40) DEFAULT NULL,
   `D_ProductID` int(11) DEFAULT NULL,
   `D_PName` varchar(40) DEFAULT NULL,
   `D_PPrice` int(11) DEFAULT NULL,
   `D_PQuantity` int(11) DEFAULT NULL,
   `D_ItemTotal` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detail`
@@ -71,14 +71,14 @@ INSERT INTO `detail` (`D_ID`, `D_OrderID`, `D_ProductID`, `D_PName`, `D_PPrice`,
 --
 
 CREATE TABLE `member` (
-`M_ID` int(11) NOT NULL,
+  `M_ID` int(11) NOT NULL,
   `M_Account` varchar(50) DEFAULT NULL,
   `M_Password` varchar(30) DEFAULT NULL,
   `M_Name` varchar(40) DEFAULT NULL,
   `M_Addr` varchar(50) DEFAULT NULL,
   `M_Email` varchar(50) DEFAULT NULL,
   `M_Phone` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
@@ -86,7 +86,7 @@ CREATE TABLE `member` (
 
 INSERT INTO `member` (`M_ID`, `M_Account`, `M_Password`, `M_Name`, `M_Addr`, `M_Email`, `M_Phone`) VALUES
 (1, 'singoboy', 'singo', '小丹', '資策會', NULL, NULL),
-(6, 'Kobe', 'Kobe', 'Kobe', 'kobe', NULL, NULL),
+(6, 'Kobe', 'Kobe', 'Kobe', '小巨蛋', NULL, NULL),
 (7, 'wade', 'wade', 'wade', 'wade', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -96,12 +96,12 @@ INSERT INTO `member` (`M_ID`, `M_Account`, `M_Password`, `M_Name`, `M_Addr`, `M_
 --
 
 CREATE TABLE `orders` (
-`O_Index` int(30) NOT NULL,
+  `O_Index` int(30) NOT NULL,
   `O_OrderID` varchar(40) DEFAULT NULL,
   `O_Date` datetime DEFAULT NULL,
   `O_Total` int(11) DEFAULT NULL,
   `O_MemberID` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
@@ -129,11 +129,11 @@ INSERT INTO `orders` (`O_Index`, `O_OrderID`, `O_Date`, `O_Total`, `O_MemberID`)
 --
 
 CREATE TABLE `product` (
-`productID` int(11) NOT NULL,
+  `productID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `price` int(50) NOT NULL,
   `imageName` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
@@ -151,10 +151,10 @@ INSERT INTO `product` (`productID`, `name`, `price`, `imageName`) VALUES
 --
 
 CREATE TABLE `reserve` (
-`R_ID` int(11) NOT NULL,
+  `R_ID` int(11) NOT NULL,
   `R_TIME` datetime DEFAULT NULL,
   `R_MEMBER_ID` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reserve`
@@ -174,31 +174,31 @@ INSERT INTO `reserve` (`R_ID`, `R_TIME`, `R_MEMBER_ID`) VALUES
 -- Indexes for table `detail`
 --
 ALTER TABLE `detail`
- ADD PRIMARY KEY (`D_ID`);
+  ADD PRIMARY KEY (`D_ID`);
 
 --
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
- ADD PRIMARY KEY (`M_ID`);
+  ADD PRIMARY KEY (`M_ID`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
- ADD PRIMARY KEY (`O_Index`);
+  ADD PRIMARY KEY (`O_Index`);
 
 --
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
- ADD PRIMARY KEY (`productID`);
+  ADD PRIMARY KEY (`productID`);
 
 --
 -- Indexes for table `reserve`
 --
 ALTER TABLE `reserve`
- ADD PRIMARY KEY (`R_ID`);
+  ADD PRIMARY KEY (`R_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -208,27 +208,27 @@ ALTER TABLE `reserve`
 -- AUTO_INCREMENT for table `detail`
 --
 ALTER TABLE `detail`
-MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
