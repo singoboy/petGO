@@ -164,6 +164,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz1-pi-zzz">
                                 <rect key="frame" x="137" y="349" width="91" height="30"/>
                                 <state key="normal" title="登入"/>
+                                <connections>
+                                    <action selector="login:" destination="OQg-D7-mt4" eventType="touchUpInside" id="wuT-ub-v59"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳號:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjb-SA-Ftt">
                                 <rect key="frame" x="28" y="175" width="64" height="21"/>
@@ -191,6 +194,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="accountText" destination="Gk7-a8-U1Z" id="La3-Zv-MBA"/>
+                        <outlet property="passwordText" destination="aft-S0-prT" id="DRK-2F-ZaG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yp6-me-q5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
