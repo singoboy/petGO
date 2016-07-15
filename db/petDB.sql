@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Jul 14, 2016 at 03:04 PM
+-- Generation Time: Jul 15, 2016 at 04:34 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -72,11 +72,22 @@ INSERT INTO `detail` (`D_ID`, `D_OrderID`, `D_ProductID`, `D_PName`, `D_PPrice`,
 
 CREATE TABLE `member` (
 `M_ID` int(11) NOT NULL,
-  `M_Name` varchar(40) NOT NULL,
-  `M_Addr` varchar(50) NOT NULL,
-  `M_Email` varchar(50) NOT NULL,
-  `M_Phone` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `M_Account` varchar(50) DEFAULT NULL,
+  `M_Password` varchar(30) DEFAULT NULL,
+  `M_Name` varchar(40) DEFAULT NULL,
+  `M_Addr` varchar(50) DEFAULT NULL,
+  `M_Email` varchar(50) DEFAULT NULL,
+  `M_Phone` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`M_ID`, `M_Account`, `M_Password`, `M_Name`, `M_Addr`, `M_Email`, `M_Phone`) VALUES
+(1, 'singoboy', 'singo', '小丹', '資策會', NULL, NULL),
+(6, 'Kobe', 'Kobe', 'Kobe', 'kobe', NULL, NULL),
+(7, 'wade', 'wade', 'wade', 'wade', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,7 +213,7 @@ MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `orders`
 --
