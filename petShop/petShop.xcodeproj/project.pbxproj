@@ -13,6 +13,9 @@
 		4768A8DA1D24AE4D00C71C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8D91D24AE4D00C71C91 /* Assets.xcassets */; };
 		4768A8DD1D24AE4D00C71C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8DB1D24AE4D00C71C91 /* LaunchScreen.storyboard */; };
 		4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */; };
+		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
+		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
+		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
 		4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */; };
 		4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */; };
 		4EC9324C1D2D2D8C004E637C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9324B1D2D2D8C004E637C /* Product.m */; };
@@ -33,6 +36,13 @@
 		4768A8DE1D24AE4D00C71C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListCtrl.h; sourceTree = "<group>"; };
 		4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListCtrl.m; sourceTree = "<group>"; };
+		47F89AF21D3878BE00C1B3AD /* MemberCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCtrl.h; sourceTree = "<group>"; };
+		47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCtrl.m; sourceTree = "<group>"; };
+		47F89AF51D38872C00C1B3AD /* RegisterCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterCtrl.h; sourceTree = "<group>"; };
+		47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterCtrl.m; sourceTree = "<group>"; };
+		47F89AF81D38874800C1B3AD /* LoginCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCtrl.h; sourceTree = "<group>"; };
+		47F89AF91D38874800C1B3AD /* LoginCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCtrl.m; sourceTree = "<group>"; };
+		47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
 		4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutDelegate.h; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
 		4E918F861D2F4A4900F79408 /* CheckoutCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutCtrl.h; sourceTree = "<group>"; };
@@ -116,6 +126,13 @@
 				4EF724C31D35340D006E638A /* SalonCtrl.m */,
 				4EF724C51D353459006E638A /* ReserveCtrl.h */,
 				4EF724C61D353459006E638A /* ReserveCtrl.m */,
+				47F89AF21D3878BE00C1B3AD /* MemberCtrl.h */,
+				47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */,
+				47F89AF51D38872C00C1B3AD /* RegisterCtrl.h */,
+				47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */,
+				47F89AF81D38874800C1B3AD /* LoginCtrl.h */,
+				47F89AF91D38874800C1B3AD /* LoginCtrl.m */,
+				47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -216,10 +233,13 @@
 				4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */,
 				4EF724C41D35340D006E638A /* SalonCtrl.m in Sources */,
 				4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */,
+				47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */,
 				4768A8D21D24AE4D00C71C91 /* AppDelegate.m in Sources */,
+				47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */,
 				4EF724C71D353459006E638A /* ReserveCtrl.m in Sources */,
 				4768A8CF1D24AE4D00C71C91 /* main.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
+				47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
