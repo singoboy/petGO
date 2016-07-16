@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="Member" representedClassName="Member" syncable="YES">
+        <attribute name="memberAccount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberAddr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="memberName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Product" representedClassName="Product" syncable="YES">
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="insertTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -9,5 +15,6 @@
     </entity>
     <elements>
         <element name="Product" positionX="-54" positionY="-9" width="128" height="120"/>
+        <element name="Member" positionX="-54" positionY="27" width="128" height="105"/>
     </elements>
 </model>

@@ -44,6 +44,7 @@
 		47F89AF81D38874800C1B3AD /* LoginCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCtrl.h; sourceTree = "<group>"; };
 		47F89AF91D38874800C1B3AD /* LoginCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCtrl.m; sourceTree = "<group>"; };
 		47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
+		4E511FA41D39CDD4001A606A /* LoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDelegate.h; sourceTree = "<group>"; };
 		4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutDelegate.h; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
 		4E7ADC401D38FE9B009163B8 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 				47F89AF81D38874800C1B3AD /* LoginCtrl.h */,
 				47F89AF91D38874800C1B3AD /* LoginCtrl.m */,
 				47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */,
+				4E511FA41D39CDD4001A606A /* LoginDelegate.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

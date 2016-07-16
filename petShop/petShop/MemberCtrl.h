@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RegisterDelegate.h"
+#import "LoginDelegate.h"
 
-@interface MemberCtrl : UIViewController<RegisterDelegate>
+@interface MemberCtrl : UIViewController<RegisterDelegate,LoginDelegate>
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginDelegate.h"
 
 @interface LoginCtrl : UIViewController
+@property id<LoginDelegate> delegate;
 
 @end

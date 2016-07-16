@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CoreData;
 
-@interface Member : NSObject
+@interface Member : NSManagedObject
 @property NSNumber * memberID ;
 @property NSString * memberAccount;
 @property NSString * memberName;

@@ -8,9 +8,10 @@
 
 #import "LoginCtrl.h"
 #import "Member.h"
+#import "CoreDataHelper.h"
 
 @interface LoginCtrl ()<UITextFieldDelegate>{
-    NSMutableArray *memberArray ;
+    Member *member ;
 
 }
 @property (weak, nonatomic) IBOutlet UITextField *accountText;
@@ -20,7 +21,7 @@
 
 @implementation LoginCtrl
 
-// This is workaroud  > < ..
+// This is workaroud
 - (IBAction)login:(id)sender {
     
     NSString * checkString =  [self checkInput];
@@ -37,11 +38,19 @@
     }
     
     //check 完  再 get
-    Member *member = [self getMember];
-    
+      NSMutableArray *memberArray = [self getMember];
+    //存到coreData
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    member= [NSEntityDescription insertNewObjectForEntityForName:@"Member" inManagedObjectContext:context];
+    member.memberID = [memberArray[0] valueForKey:@"memberID"];
+    member.memberAccount = [memberArray[0] valueForKey:@"memberAccount"];
+    member.memberName = [memberArray[0] valueForKey:@"memberName"];
+    member.memberAddr=[memberArray[0] valueForKey:@"memberAddr"];
     NSLog(@"member=%@",member);
-
-
+    [context save:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate showUIAlertCtrl:@"登入成功"];
+    
 }
 
 -(NSString *)checkInput{
@@ -89,7 +98,7 @@
     return  result;
 }
 
--(Member *)getMember{
+-(NSMutableArray *)getMember{
     
     NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/member_get.php"];
     NSURL *url = [NSURL URLWithString:urlStr];
@@ -109,9 +118,9 @@
     if (error != nil) {
         NSLog(@"Error");
     }
-    memberArray = [jsonArray mutableCopy];
-    Member * member = memberArray[0];  //json的key 要跟物件的key一樣才不會出問題
-    return member;
+    NSMutableArray  *memberValueArray = [jsonArray mutableCopy];
+    
+    return memberValueArray;
 
 }
 

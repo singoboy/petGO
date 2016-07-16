@@ -22,7 +22,7 @@
                                 <rect key="frame" x="56" y="293" width="65" height="53"/>
                                 <state key="normal" title="登入"/>
                                 <connections>
-                                    <segue destination="OQg-D7-mt4" kind="show" id="EUY-FS-vYO"/>
+                                    <segue destination="OQg-D7-mt4" kind="show" identifier="login" id="EUY-FS-vYO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累積消費金額 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYa-zu-dey">
@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNK-zV-MTU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNK-zV-MTU">
                                 <rect key="frame" x="186" y="155" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,10 +54,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gge-q2-yBd">
-                                <rect key="frame" x="168" y="299" width="64" height="41"/>
+                                <rect key="frame" x="128" y="363" width="64" height="41"/>
                                 <state key="normal" title="註冊"/>
                                 <connections>
                                     <segue destination="tl7-Pu-5xW" kind="show" identifier="register" id="3Ta-B1-21Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kU-ha-yGT">
+                                <rect key="frame" x="211" y="304" width="30" height="30"/>
+                                <state key="normal" title="登出"/>
+                                <connections>
+                                    <action selector="logout:" destination="bzZ-Gb-bD3" eventType="touchUpInside" id="TG1-Tg-d1u"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -65,6 +72,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="xqN-Ow-fFr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="memberText" destination="dPM-MH-5hP" id="l0R-Dq-qkh"/>
+                        <outlet property="totalAmount" destination="hNK-zV-MTU" id="j5g-3h-amk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZN-pm-pDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
