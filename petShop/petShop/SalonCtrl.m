@@ -30,29 +30,62 @@
 //        return;
 //    }
     
+    //同步取得改成異步取得 0716
+//    NSNumber *memberID = member.memberID ;
+//    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_json.php"];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                                       timeoutInterval:60.0];
+//    [request setHTTPMethod:@"POST"];
+//    NSString *postString = [NSString stringWithFormat:@"memberID=%@",memberID];
+//    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//    
+//    NSError *error = nil;
+//    
+//    /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
+//     NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+//    reserveArray = [jsonArray mutableCopy];
+//    
+//    if (error != nil) {
+//        NSLog(@"Error parsing JSON.");
+//        return ;
+//    }
+//        [self.tableView reloadData];
     
+    /*  異步開始 */
     NSNumber *memberID = member.memberID ;
-    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_json.php"];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-    [request setHTTPMethod:@"POST"];
+    NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/reserve_json.php"];
+    
     NSString *postString = [NSString stringWithFormat:@"memberID=%@",memberID];
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
-    NSError *error = nil;
+    NSMutableURLRequest  *request = [NSMutableURLRequest requestWithURL:url];
+    //設定為POST method
+    [request setHTTPMethod:@"POST"];
+    //NSString　轉成NSData
+    NSData *body = [postString  dataUsingEncoding:NSUTF8StringEncoding];
     
-    /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
-     NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
-    reserveArray = [jsonArray mutableCopy];
-    
-    if (error != nil) {
-        NSLog(@"Error parsing JSON.");
-        return ;
-    }
-        [self.tableView reloadData];
+    NSURLSession *session = [NSURLSession sharedSession];
+    //利用uploadTask上傳
+    NSURLSessionTask *task = [session uploadTaskWithRequest:request fromData:body completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+            /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
+             NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            reserveArray = [jsonArray mutableCopy];
+        
+            if (error != nil) {
+                NSLog(@"Error parsing JSON.");
+                return ;
+            }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
+    }];
+    [task resume];
+
     
 }
 

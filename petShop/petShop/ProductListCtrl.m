@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.productArray = [NSMutableArray array];
     
     //    NSLog(@"productJson= %@",self.productArray);
     
@@ -40,22 +41,45 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    //同步取得改成異步取得  0716
+//    NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/product_json.php"];
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    self.productArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//    [self.tableView reloadData];
+
     NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/product_json.php"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    self.productArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    [self.tableView reloadData];
+    
+   // NSString *parameters = [NSString stringWithFormat:@"memberID=%d",1];
+        NSString *parameters = @"";
+    
+    NSMutableURLRequest  *request = [NSMutableURLRequest requestWithURL:url];
+    //設定為POST method
+    [request setHTTPMethod:@"POST"];
+    //NSString　轉成NSData
+    NSData *body = [parameters dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    //利用uploadTask上傳
+    NSURLSessionTask *task = [session uploadTaskWithRequest:request fromData:body completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        self.productArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+               [self.tableView reloadData];
+        });
+        
+    }];
+    [task resume];
+    
 }
 
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return self.productArray.count;
 }
 
