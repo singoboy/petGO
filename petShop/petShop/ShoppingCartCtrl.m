@@ -10,11 +10,14 @@
 #import "CoreDataHelper.h"
 #import "Product.h"
 #import "CheckoutCtrl.h"
+#import "Member.h"
+#import "CoreDataHelper.h"
 
 
 @interface ShoppingCartCtrl ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *productList;
+    Member *member ;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -74,6 +77,31 @@
     [self getTotalPrice];
     
     // Do any additional setup after loading the view.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    //query from coredata
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    //要抓取的物件
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Member"];
+    
+    NSError *error = nil ;
+    //執行查詢後的結果
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"getMember error");
+        return ;
+    }
+    
+    if (results.count == 0) {
+        member = nil ;
+        NSLog(@"查無結果");
+        return;
+    }
+    
+    member =results[0];
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated{
@@ -152,8 +180,18 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"checkout"]) {
+        if (productList.count ==0) {
+            [self showUIAlertCtrl:@"請先選購商品"];
+            return ;
+        }
+        if (member == nil) {
+            [self showUIAlertCtrl:@"請先登入會員"];
+            return ;
+        }
         CheckoutCtrl *checkoutCtrl =segue.destinationViewController;
         checkoutCtrl.delegate = self ;
+        checkoutCtrl.member = member;
+ 
     }
 }
 

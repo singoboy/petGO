@@ -469,6 +469,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mf3-UL-mSK">
                                 <rect key="frame" x="134" y="124" width="75" height="30"/>
                                 <state key="normal" title="同會員地址"/>
+                                <connections>
+                                    <action selector="pickMemberAddr:" destination="AHr-Gb-tqc" eventType="touchUpInside" id="OI1-2F-izR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="總計" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-PO-5L5">
                                 <rect key="frame" x="42" y="231" width="34" height="21"/>

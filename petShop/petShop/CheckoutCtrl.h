@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CheckoutDelegate.h"
+#import "Member.h"
 
 @interface CheckoutCtrl : UIViewController
 @property id<CheckoutDelegate>  delegate;
+@property  Member *member ;
 @end

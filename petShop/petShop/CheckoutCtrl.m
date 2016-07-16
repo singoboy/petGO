@@ -11,6 +11,7 @@
 #import "Product.h"
 #import "ProductListCtrl.h"
 
+
 @interface CheckoutCtrl ()
 {
     NSMutableArray *productList;
@@ -55,6 +56,12 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+
+   self.memberNameLabel.text = self.member.memberName;
+}
+
+
 //This is workaroud !!
 - (IBAction)payAction:(id)sender {
        NSString *orderResponse = [self addProductOrder];
@@ -91,6 +98,8 @@
 //    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
 //    [self presentViewController:productListCtrl animated:YES completion:nil];
     
+    // select * from orders a join detail b on a.O_OrderID = b.D_OrderID where a.O_OrderID = '20160716121116e5c50';
+    
 }
 
 -(NSString *)addProductOrder{
@@ -102,7 +111,7 @@
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"total=%ld",total];
+    NSString *postString = [NSString stringWithFormat:@"total=%ld&memberID=%@",total,self.member.memberID];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -133,6 +142,11 @@
 
 -(NSString *)deleteProductOrder:(NSString*)orderID{
     return @"";
+}
+
+// it's worth to discuss that get data from db not coreData ?
+- (IBAction)pickMemberAddr:(id)sender {
+    self.addressTextField.text = self.member.memberAddr;
 }
 
 -(NSInteger )getTotalPrice{

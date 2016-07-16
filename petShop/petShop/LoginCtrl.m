@@ -49,7 +49,7 @@
     NSLog(@"member=%@",member);
     [context save:nil];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.delegate showUIAlertCtrl:@"登入成功"];
+    //[self.delegate showUIAlertCtrl:@"登入成功"];
     
 }
 
