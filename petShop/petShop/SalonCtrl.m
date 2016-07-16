@@ -7,10 +7,14 @@
 //
 
 #import "SalonCtrl.h"
+#import "Member.h"
+#import "CoreDataHelper.h"
+#import "ReserveCtrl.h"
 
 @interface SalonCtrl ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *reserveArray ;
+    Member *member ;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,14 +23,22 @@
 @implementation SalonCtrl
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSInteger memberID = 1 ;
+    
+       [self queryMemberFromCoreData];
+//    if ([returnStr isEqualToString:@"error"]) {
+//        [self showUIAlertCtrl:@"尚未登入"];
+//        return;
+//    }
+    
+    
+    NSNumber *memberID = member.memberID ;
     NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_json.php"];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"memberID=%ld",(long)memberID ];
+    NSString *postString = [NSString stringWithFormat:@"memberID=%@",memberID];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
@@ -38,9 +50,10 @@
     
     if (error != nil) {
         NSLog(@"Error parsing JSON.");
+        return ;
     }
         [self.tableView reloadData];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -48,10 +61,49 @@
     self.tableView.dataSource=self ;
     self.tableView.delegate =self;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    reserveArray = [NSMutableArray array];
     
     // Do any additional setup after loading the view.
 }
 
+
+-(NSString *)queryMemberFromCoreData{
+    //query from coredata
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    //要抓取的物件
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Member"];
+    
+    NSError *error = nil ;
+    //執行查詢後的結果
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"getMember error");
+        return @"error";
+    }
+    
+    if (results.count == 0) {
+        member = nil ;
+        NSLog(@"查無結果");
+         return @"error";
+    }
+    
+    member =results[0];
+    return @"ok";
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"reserve"]) {
+        if ( member == nil) {
+            [self showUIAlertCtrl:@"請先登入會員"];
+            return ;
+        }
+        
+        ReserveCtrl *reserveCtrl =segue.destinationViewController;
+        reserveCtrl.member = member;
+    }
+ 
+}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,7 +121,8 @@
     
     cell.textLabel.text =  [item objectForKey: @"R_TIME"];
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"會員ID:%@",[[item objectForKey: @"R_MEMBER_ID"] stringValue]];
+
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"預約人   %@",item[@"M_Name"]];
     
     
     return cell;
@@ -88,8 +141,21 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
-        // 去 db刪
+        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪
         
+        NSDictionary *dic  =  reserveArray[indexPath.row] ;
+        NSString *arrayMemIDStr  = dic[@"R_MEMBER_ID"];
+        NSString *memberIDStr   =[member.memberID stringValue];
+        NSLog(@"arrayMemIDStr=%@",arrayMemIDStr);
+        NSLog(@"memberIDStr=%@",memberIDStr);
+        if ([memberIDStr isEqualToString:arrayMemIDStr]) {
+            [self showUIAlertCtrl:@"相同"];
+                    return ;
+        }
+
+        
+        return ;
+        // 去 db刪
         NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_delete.php"];
         NSURL *url = [NSURL URLWithString:urlStr];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
@@ -108,7 +174,6 @@
             [self showUIAlertCtrl:@"DB刪除失敗"];
             return;
         }
-        
         
         //從array 刪去那一筆
         

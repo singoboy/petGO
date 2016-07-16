@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Member.h"
 
 @interface ReserveCtrl : UIViewController
+@property Member *member ;
 
 @end

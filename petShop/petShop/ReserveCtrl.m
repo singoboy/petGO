@@ -100,7 +100,7 @@
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"reserveTime=%@",time ];
+    NSString *postString = [NSString stringWithFormat:@"reserveTime=%@&memberID=%@",time,self.member.memberID];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
