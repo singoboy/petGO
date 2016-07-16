@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 15, 2016 at 09:36 PM
+-- Generation Time: Jul 16, 2016 at 02:20 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `detail` (
   `D_PPrice` int(11) DEFAULT NULL,
   `D_PQuantity` int(11) DEFAULT NULL,
   `D_ItemTotal` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detail`
@@ -62,7 +62,9 @@ INSERT INTO `detail` (`D_ID`, `D_OrderID`, `D_ProductID`, `D_PName`, `D_PPrice`,
 (19, '2016071311375766a8b', 3, '狗罐頭', 150, 1, 150),
 (20, '2016071311375766a8b', 2, '貓罐頭', 100, 1, 100),
 (21, '201607131204310ca4e', 3, '狗罐頭', 150, 1, 150),
-(22, '201607131204310ca4e', 2, '貓罐頭', 100, 1, 100);
+(22, '201607131204310ca4e', 2, '貓罐頭', 100, 1, 100),
+(23, '20160716121116e5c50', 2, '貓罐頭', 100, 1, 100),
+(24, '20160716121116e5c50', 3, '狗罐頭', 150, 1, 150);
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,7 @@ CREATE TABLE `member` (
   `M_Addr` varchar(50) DEFAULT NULL,
   `M_Email` varchar(50) DEFAULT NULL,
   `M_Phone` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
@@ -87,7 +89,8 @@ CREATE TABLE `member` (
 INSERT INTO `member` (`M_ID`, `M_Account`, `M_Password`, `M_Name`, `M_Addr`, `M_Email`, `M_Phone`) VALUES
 (1, 'singoboy', 'singo', '小丹', '資策會', NULL, NULL),
 (6, 'Kobe', 'Kobe', 'Kobe', '小巨蛋', NULL, NULL),
-(7, 'wade', 'wade', 'wade', 'wade', NULL, NULL);
+(7, 'wade', 'wade', 'wade', 'wade', NULL, NULL),
+(8, 'tmac', 'tmac', 'tmac', '輔仁大學', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,7 +104,7 @@ CREATE TABLE `orders` (
   `O_Date` datetime DEFAULT NULL,
   `O_Total` int(11) DEFAULT NULL,
   `O_MemberID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
@@ -120,7 +123,8 @@ INSERT INTO `orders` (`O_Index`, `O_OrderID`, `O_Date`, `O_Total`, `O_MemberID`)
 (10, '2016071217054004415', '2016-07-12 17:05:40', 100, NULL),
 (11, '20160713110047099ce', '2016-07-13 11:00:47', 150, NULL),
 (12, '2016071311375766a8b', '2016-07-13 11:37:57', 250, NULL),
-(13, '201607131204310ca4e', '2016-07-13 12:04:31', 250, NULL);
+(13, '201607131204310ca4e', '2016-07-13 12:04:31', 250, NULL),
+(14, '20160716121116e5c50', '2016-07-16 12:11:16', 250, 8);
 
 -- --------------------------------------------------------
 
@@ -154,17 +158,20 @@ CREATE TABLE `reserve` (
   `R_ID` int(11) NOT NULL,
   `R_TIME` datetime DEFAULT NULL,
   `R_MEMBER_ID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reserve`
 --
 
 INSERT INTO `reserve` (`R_ID`, `R_TIME`, `R_MEMBER_ID`) VALUES
-(3, '2016-07-13 11:00:00', NULL),
-(9, '2016-07-14 16:00:00', NULL),
-(10, '2016-07-14 17:00:00', NULL),
-(11, '2016-07-15 17:00:00', NULL);
+(3, '2016-07-17 14:00:00', 7),
+(5, '2016-07-25 14:00:00', 7),
+(6, '2016-07-25 18:00:00', 7),
+(7, '2016-07-16 16:00:00', 8),
+(8, '2016-07-22 16:00:00', 8),
+(9, '2016-07-20 16:00:00', 8),
+(10, '2016-07-19 16:00:00', 8);
 
 --
 -- Indexes for dumped tables
@@ -208,17 +215,17 @@ ALTER TABLE `reserve`
 -- AUTO_INCREMENT for table `detail`
 --
 ALTER TABLE `detail`
-  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `M_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -228,7 +235,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-  MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

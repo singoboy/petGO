@@ -141,7 +141,7 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
-        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪
+        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪  //比字串有bug??
         
         NSDictionary *dic  =  reserveArray[indexPath.row] ;
         NSString *arrayMemIDStr  = dic[@"R_MEMBER_ID"];
@@ -151,6 +151,10 @@
         if ([memberIDStr isEqualToString:arrayMemIDStr]) {
             [self showUIAlertCtrl:@"相同"];
                     return ;
+        }
+        else{
+            [self showUIAlertCtrl:@"不相同"];
+            return ;
         }
 
         
