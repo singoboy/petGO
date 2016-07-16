@@ -141,24 +141,17 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
-        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪  //比字串有bug??
+        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪  //NSSTRING isEqualToString 不只會比值還會比型態！！！ NSLOG印看都一樣 XXX!!
         
         NSDictionary *dic  =  reserveArray[indexPath.row] ;
-        NSString *arrayMemIDStr  = dic[@"R_MEMBER_ID"];
+        NSString *arrayMemIDStr  = [dic[@"R_MEMBER_ID"] stringValue];
         NSString *memberIDStr   =[member.memberID stringValue];
-        NSLog(@"arrayMemIDStr=%@",arrayMemIDStr);
-        NSLog(@"memberIDStr=%@",memberIDStr);
-        if ([memberIDStr isEqualToString:arrayMemIDStr]) {
-            [self showUIAlertCtrl:@"相同"];
+
+        if (![memberIDStr isEqualToString:arrayMemIDStr]) {
+            [self showUIAlertCtrl:@"只能取消自己預約的時間"];
                     return ;
         }
-        else{
-            [self showUIAlertCtrl:@"不相同"];
-            return ;
-        }
 
-        
-        return ;
         // 去 db刪
         NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/reserve_delete.php"];
         NSURL *url = [NSURL URLWithString:urlStr];
@@ -216,5 +209,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+/*   bug with string
+ NSDictionary *dic  =  reserveArray[indexPath.row] ;
+ NSString *arrayMemIDStr  = dic[@"R_MEMBER_ID"];  //type  (long)8
+ NSString *memberIDStr   =[member.memberID stringValue];    8
+ NSLog(@"arrayMemIDStr=%@",arrayMemIDStr);
+ NSLog(@"memberIDStr=%@",memberIDStr);
+ if ([memberIDStr isEqualToString:arrayMemIDStr]) {
+ [self showUIAlertCtrl:@"相同"];
+ return ;
+ }
+ else{
+ [self showUIAlertCtrl:@"不相同"];
+ return ;
+ }
+ 
+ */
 
 @end
