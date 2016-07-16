@@ -57,22 +57,28 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-
-   self.memberNameLabel.text = self.member.memberName;
+    
+    self.memberNameLabel.text = self.member.memberName;
 }
 
 
 //This is workaroud !!
 - (IBAction)payAction:(id)sender {
-       NSString *orderResponse = [self addProductOrder];
-        if ([orderResponse  isEqualToString:@"error"]) {
-            [self showUIAlertCtrl:@"結帳失敗"];
-            return;
-        }
-    for (int i = 0; i<productList.count;  i++) {
-            [self addProductDetail:orderResponse withProduct:productList[i]];
+    //確認是否有填寫地址
+    if (self.addressTextField.text.length == 0) {
+        [self showUIAlertCtrl:@"請填寫配送地址"];
+        return ;
     }
-   //此處因該再做detail筆數的確認
+    
+    NSString *orderResponse = [self addProductOrder];
+    if ([orderResponse  isEqualToString:@"error"]) {
+        [self showUIAlertCtrl:@"結帳失敗"];
+        return;
+    }
+    for (int i = 0; i<productList.count;  i++) {
+        [self addProductDetail:orderResponse withProduct:productList[i]];
+    }
+    //此處因該再做detail筆數的確認
     
     //刪除coreData內的資料
     CoreDataHelper *helper = [CoreDataHelper sharedInstance];
@@ -86,7 +92,7 @@
         NSLog(@"error saving %@",error);
     }
     [self.delegate clearProducts];
- //   [self showUIAlertCtrl:@"訂單已生成"];
+    //   [self showUIAlertCtrl:@"訂單已生成"];
     
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -94,9 +100,9 @@
     [self.delegate showUIAlertCtrl:@"訂單已生成"];
     
     
-      /* Note  畫面會被UIAlertCtrl卡住無法切換  */
-//    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
-//    [self presentViewController:productListCtrl animated:YES completion:nil];
+    /* Note  畫面會被UIAlertCtrl卡住無法切換  */
+    //    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
+    //    [self presentViewController:productListCtrl animated:YES completion:nil];
     
     // select * from orders a join detail b on a.O_OrderID = b.D_OrderID where a.O_OrderID = '20160716121116e5c50';
     
@@ -121,22 +127,22 @@
 
 -(NSString *)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
     
-        //使用get 傳productList 　會超過256 上限
-        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add.php"];
-        NSURL *url = [NSURL URLWithString:urlStr];
+    //使用get 傳productList 　會超過256 上限
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add.php"];
+    NSURL *url = [NSURL URLWithString:urlStr];
     
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                           timeoutInterval:60.0];
-        [request setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@",orderID,product.productID,product.name,product.price];
-        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@",orderID,product.productID,product.name,product.price];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
-        NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-//        NSLog(@"result= %@",result);
-       return result ;
+    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //        NSLog(@"result= %@",result);
+    return result ;
     
 }
 
@@ -170,7 +176,7 @@
     [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:alertAction];
     [self presentViewController:alertController animated:YES completion:nil];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 16, 2016 at 02:20 PM
+-- Generation Time: Jul 16, 2016 at 05:40 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -34,37 +34,26 @@ CREATE TABLE `detail` (
   `D_PPrice` int(11) DEFAULT NULL,
   `D_PQuantity` int(11) DEFAULT NULL,
   `D_ItemTotal` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detail`
 --
 
 INSERT INTO `detail` (`D_ID`, `D_OrderID`, `D_ProductID`, `D_PName`, `D_PPrice`, `D_PQuantity`, `D_ItemTotal`) VALUES
-(1, '20160710212308cdaef', 2, '貓罐頭', 100, 1, 100),
-(2, '20160710212308cdaef', 3, '狗罐頭', 150, 1, 150),
-(3, '201607102126577d3cf', 3, '狗罐頭', 150, 1, 150),
-(4, '20160710212955ff9bf', 3, '狗罐頭', 150, 1, 150),
-(5, '20160710212955ff9bf', 3, '狗罐頭', 150, 1, 150),
-(6, '20160710212955ff9bf', 3, '狗罐頭', 150, 1, 150),
-(7, '20160710213910e74d0', 2, '貓罐頭', 100, 1, 100),
-(8, '20160710213910e74d0', 3, '狗罐頭', 150, 1, 150),
-(9, '201607102140443a644', 3, '狗罐頭', 150, 1, 150),
-(10, '201607102140443a644', 2, '貓罐頭', 100, 1, 100),
-(11, '20160710224439a1408', 3, '狗罐頭', 150, 1, 150),
-(12, '20160710224439a1408', 2, '貓罐頭', 100, 1, 100),
-(13, '2016071211354670e58', 2, '貓罐頭', 100, 1, 100),
-(14, '20160712170034360a4', 2, '貓罐頭', 100, 1, 100),
-(15, '2016071217050896710', 2, '貓罐頭', 100, 1, 100),
-(16, '2016071217050896710', 2, '貓罐頭', 100, 1, 100),
-(17, '2016071217054004415', 2, '貓罐頭', 100, 1, 100),
-(18, '20160713110047099ce', 3, '狗罐頭', 150, 1, 150),
-(19, '2016071311375766a8b', 3, '狗罐頭', 150, 1, 150),
-(20, '2016071311375766a8b', 2, '貓罐頭', 100, 1, 100),
-(21, '201607131204310ca4e', 3, '狗罐頭', 150, 1, 150),
-(22, '201607131204310ca4e', 2, '貓罐頭', 100, 1, 100),
-(23, '20160716121116e5c50', 2, '貓罐頭', 100, 1, 100),
-(24, '20160716121116e5c50', 3, '狗罐頭', 150, 1, 150);
+(1, '20160716170913d35a8', 3, '狗罐頭', 150, 1, 150),
+(2, '20160716170913d35a8', 2, '貓罐頭', 100, 1, 100),
+(3, '20160716170913d35a8', 2, '貓罐頭', 100, 1, 100),
+(4, '20160716170913d35a8', 3, '狗罐頭', 150, 1, 150),
+(5, '20160716170913d35a8', 1, '蘑菇', 50, 1, 50),
+(6, '20160716170913d35a8', 3, '狗罐頭', 150, 1, 150),
+(7, '201607161709255133f', 2, '貓罐頭', 100, 1, 100),
+(8, '201607161709255133f', 3, '狗罐頭', 150, 1, 150),
+(9, '20160716170958c12f0', 3, '狗罐頭', 150, 1, 150),
+(10, '20160716170958c12f0', 2, '貓罐頭', 100, 1, 100),
+(11, '2016071617122603da3', 1, '蘑菇', 50, 1, 50),
+(12, '20160716171512c4b0c', 3, '狗罐頭', 150, 1, 150),
+(13, '20160716171512c4b0c', 2, '貓罐頭', 100, 1, 100);
 
 -- --------------------------------------------------------
 
@@ -89,7 +78,7 @@ CREATE TABLE `member` (
 INSERT INTO `member` (`M_ID`, `M_Account`, `M_Password`, `M_Name`, `M_Addr`, `M_Email`, `M_Phone`) VALUES
 (1, 'singoboy', 'singo', '小丹', '資策會', NULL, NULL),
 (6, 'Kobe', 'Kobe', 'Kobe', '小巨蛋', NULL, NULL),
-(7, 'wade', 'wade', 'wade', 'wade', NULL, NULL),
+(7, 'wade', 'wade', 'wade', '麥當勞', NULL, NULL),
 (8, 'tmac', 'tmac', 'tmac', '輔仁大學', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -104,27 +93,18 @@ CREATE TABLE `orders` (
   `O_Date` datetime DEFAULT NULL,
   `O_Total` int(11) DEFAULT NULL,
   `O_MemberID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`O_Index`, `O_OrderID`, `O_Date`, `O_Total`, `O_MemberID`) VALUES
-(1, '20160710212308cdaef', '2016-07-10 21:23:08', 250, NULL),
-(2, '201607102126577d3cf', '2016-07-10 21:26:57', 150, NULL),
-(3, '20160710212955ff9bf', '2016-07-10 21:29:55', 450, NULL),
-(4, '20160710213910e74d0', '2016-07-10 21:39:10', 250, NULL),
-(5, '201607102140443a644', '2016-07-10 21:40:44', 250, NULL),
-(6, '20160710224439a1408', '2016-07-10 22:44:39', 250, NULL),
-(7, '2016071211354670e58', '2016-07-12 11:35:46', 100, NULL),
-(8, '20160712170034360a4', '2016-07-12 17:00:34', 100, NULL),
-(9, '2016071217050896710', '2016-07-12 17:05:08', 200, NULL),
-(10, '2016071217054004415', '2016-07-12 17:05:40', 100, NULL),
-(11, '20160713110047099ce', '2016-07-13 11:00:47', 150, NULL),
-(12, '2016071311375766a8b', '2016-07-13 11:37:57', 250, NULL),
-(13, '201607131204310ca4e', '2016-07-13 12:04:31', 250, NULL),
-(14, '20160716121116e5c50', '2016-07-16 12:11:16', 250, 8);
+(1, '20160716170913d35a8', '2016-07-16 17:09:13', 700, 8),
+(2, '201607161709255133f', '2016-07-16 17:09:25', 250, 8),
+(3, '20160716170958c12f0', '2016-07-16 17:09:58', 250, 7),
+(4, '2016071617122603da3', '2016-07-16 17:12:26', 50, 7),
+(5, '20160716171512c4b0c', '2016-07-16 17:15:12', 250, 6);
 
 -- --------------------------------------------------------
 
@@ -158,7 +138,7 @@ CREATE TABLE `reserve` (
   `R_ID` int(11) NOT NULL,
   `R_TIME` datetime DEFAULT NULL,
   `R_MEMBER_ID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reserve`
@@ -168,10 +148,12 @@ INSERT INTO `reserve` (`R_ID`, `R_TIME`, `R_MEMBER_ID`) VALUES
 (3, '2016-07-17 14:00:00', 7),
 (5, '2016-07-25 14:00:00', 7),
 (6, '2016-07-25 18:00:00', 7),
-(7, '2016-07-16 16:00:00', 8),
-(8, '2016-07-22 16:00:00', 8),
 (9, '2016-07-20 16:00:00', 8),
-(10, '2016-07-19 16:00:00', 8);
+(10, '2016-07-19 16:00:00', 8),
+(11, '2016-07-30 15:00:00', 8),
+(12, '2016-07-16 20:00:00', 6),
+(13, '2016-07-19 20:00:00', 6),
+(14, '2016-07-19 18:00:00', 6);
 
 --
 -- Indexes for dumped tables
@@ -215,7 +197,7 @@ ALTER TABLE `reserve`
 -- AUTO_INCREMENT for table `detail`
 --
 ALTER TABLE `detail`
-  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -225,7 +207,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -235,7 +217,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-  MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `R_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

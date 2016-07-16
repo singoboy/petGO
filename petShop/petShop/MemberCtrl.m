@@ -59,8 +59,10 @@
     member =results[0];
     
     self.memberText.text = member.memberName;
-    //self.totalAmount.text = @"0";
-    
+
+    if ( member != nil) {
+        [self memberGetTotalAmount];
+    }
     
 }
 
@@ -114,7 +116,35 @@
         loginCtrl.delegate = self ;
     }
 }
+-(void)memberGetTotalAmount{
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8888/petShop/order_getTotal.php"];
+    
+    NSString *parameters = [NSString stringWithFormat:@"memberID=%@",member.memberID];
+    
+    NSMutableURLRequest  *request = [NSMutableURLRequest requestWithURL:url];
+    //設定為POST method
+    [request setHTTPMethod:@"POST"];
+    //NSString　轉成NSData
+    NSData *body = [parameters dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    //利用uploadTask上傳
+    NSURLSessionTask *task = [session uploadTaskWithRequest:request fromData:body completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        
+        NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        /* 去除多餘的換行符號   取回mysql的資料時不知為何會被加上換行符號*/
+        result  = [result  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+        //放到主執行緒執行
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.totalAmount.text = result ;
+        });
+        
+        
+    }];
+    [task resume];
 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

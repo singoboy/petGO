@@ -113,7 +113,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8H-Op-Bed">
                                 <rect key="frame" x="117" y="376" width="71" height="39"/>
-                                <state key="normal" title="註冊"/>
+                                <state key="normal" title="新註冊"/>
                                 <connections>
                                     <action selector="register:" destination="tl7-Pu-5xW" eventType="touchUpInside" id="niQ-fm-gpO"/>
                                 </connections>
