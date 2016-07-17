@@ -12,7 +12,7 @@
 #import "ProductListCtrl.h"
 
 
-@interface CheckoutCtrl ()
+@interface CheckoutCtrl ()<UITextFieldDelegate>
 {
     NSMutableArray *productList;
 }
@@ -53,6 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getTotalPrice];
+    self.addressTextField.delegate = self ;
     // Do any additional setup after loading the view.
 }
 
@@ -177,6 +178,12 @@
     [alertController addAction:alertAction];
     [self presentViewController:alertController animated:YES completion:nil];
     
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES ;
 }
 
 - (void)didReceiveMemoryWarning {
