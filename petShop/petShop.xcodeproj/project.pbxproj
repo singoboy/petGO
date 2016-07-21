@@ -16,6 +16,13 @@
 		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
 		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
 		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
+		4E2C53B81D40DE720085A538 /* PetHospitalMapCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2C53B71D40DE720085A538 /* PetHospitalMapCtrl.m */; };
+		4E2C53BA1D40DF900085A538 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2C53B91D40DF900085A538 /* MapKit.framework */; };
+		4E2C53BC1D40DF9D0085A538 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2C53BB1D40DF9D0085A538 /* CoreLocation.framework */; };
+		4E2C53C21D40E4D50085A538 /* Pet_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2C53BE1D40E4D50085A538 /* Pet_Red.png */; };
+		4E2C53C31D40E4D50085A538 /* pointRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2C53BF1D40E4D50085A538 /* pointRed.png */; };
+		4E2C53C41D40E4D50085A538 /* pointRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2C53C01D40E4D50085A538 /* pointRed@2x.png */; };
+		4E2C53C51D40E4D50085A538 /* pointRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2C53C11D40E4D50085A538 /* pointRed@3x.png */; };
 		4E7ADC421D38FE9B009163B8 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7ADC411D38FE9B009163B8 /* Member.m */; };
 		4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E918F871D2F4A4900F79408 /* CheckoutCtrl.m */; };
 		4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC932481D2D2CBE004E637C /* ShoppingCartCtrl.m */; };
@@ -44,6 +51,14 @@
 		47F89AF81D38874800C1B3AD /* LoginCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCtrl.h; sourceTree = "<group>"; };
 		47F89AF91D38874800C1B3AD /* LoginCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCtrl.m; sourceTree = "<group>"; };
 		47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
+		4E2C53B61D40DE720085A538 /* PetHospitalMapCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetHospitalMapCtrl.h; sourceTree = "<group>"; };
+		4E2C53B71D40DE720085A538 /* PetHospitalMapCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetHospitalMapCtrl.m; sourceTree = "<group>"; };
+		4E2C53B91D40DF900085A538 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4E2C53BB1D40DF9D0085A538 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4E2C53BE1D40E4D50085A538 /* Pet_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pet_Red.png; sourceTree = "<group>"; };
+		4E2C53BF1D40E4D50085A538 /* pointRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointRed.png; sourceTree = "<group>"; };
+		4E2C53C01D40E4D50085A538 /* pointRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pointRed@2x.png"; sourceTree = "<group>"; };
+		4E2C53C11D40E4D50085A538 /* pointRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pointRed@3x.png"; sourceTree = "<group>"; };
 		4E511FA41D39CDD4001A606A /* LoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDelegate.h; sourceTree = "<group>"; };
 		4E5B2EED1D321B3D00E6A721 /* CheckoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutDelegate.h; sourceTree = "<group>"; };
 		4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDelegate.h; sourceTree = "<group>"; };
@@ -69,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2C53BC1D40DF9D0085A538 /* CoreLocation.framework in Frameworks */,
+				4E2C53BA1D40DF900085A538 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +95,8 @@
 		4768A8C11D24AE4D00C71C91 = {
 			isa = PBXGroup;
 			children = (
+				4E2C53BB1D40DF9D0085A538 /* CoreLocation.framework */,
+				4E2C53B91D40DF900085A538 /* MapKit.framework */,
 				4768A8CC1D24AE4D00C71C91 /* petShop */,
 				4768A8CB1D24AE4D00C71C91 /* Products */,
 			);
@@ -94,6 +113,7 @@
 		4768A8CC1D24AE4D00C71C91 /* petShop */ = {
 			isa = PBXGroup;
 			children = (
+				4E2C53BD1D40E4A20085A538 /* image */,
 				4E918F8B1D2F4E5100F79408 /* View */,
 				4E918F8A1D2F4E4400F79408 /* Model */,
 				4E918F891D2F4E1900F79408 /* Controller */,
@@ -113,6 +133,17 @@
 				4768A8CE1D24AE4D00C71C91 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4E2C53BD1D40E4A20085A538 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				4E2C53BE1D40E4D50085A538 /* Pet_Red.png */,
+				4E2C53BF1D40E4D50085A538 /* pointRed.png */,
+				4E2C53C01D40E4D50085A538 /* pointRed@2x.png */,
+				4E2C53C11D40E4D50085A538 /* pointRed@3x.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 		4E918F891D2F4E1900F79408 /* Controller */ = {
@@ -138,6 +169,8 @@
 				47F89AF91D38874800C1B3AD /* LoginCtrl.m */,
 				47F89AFC1D38CB5A00C1B3AD /* RegisterDelegate.h */,
 				4E511FA41D39CDD4001A606A /* LoginDelegate.h */,
+				4E2C53B61D40DE720085A538 /* PetHospitalMapCtrl.h */,
+				4E2C53B71D40DE720085A538 /* PetHospitalMapCtrl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -195,6 +228,11 @@
 				TargetAttributes = {
 					4768A8C91D24AE4D00C71C91 = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -222,8 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4768A8DD1D24AE4D00C71C91 /* LaunchScreen.storyboard in Resources */,
+				4E2C53C21D40E4D50085A538 /* Pet_Red.png in Resources */,
 				4768A8DA1D24AE4D00C71C91 /* Assets.xcassets in Resources */,
+				4E2C53C51D40E4D50085A538 /* pointRed@3x.png in Resources */,
+				4E2C53C31D40E4D50085A538 /* pointRed.png in Resources */,
 				4768A8D81D24AE4D00C71C91 /* Main.storyboard in Resources */,
+				4E2C53C41D40E4D50085A538 /* pointRed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +279,7 @@
 				4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */,
 				4EC9324C1D2D2D8C004E637C /* Product.m in Sources */,
 				4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */,
+				4E2C53B81D40DE720085A538 /* PetHospitalMapCtrl.m in Sources */,
 				4EC9324F1D2D39C7004E637C /* DataModel.xcdatamodeld in Sources */,
 				4EF724C41D35340D006E638A /* SalonCtrl.m in Sources */,
 				4E918F881D2F4A4900F79408 /* CheckoutCtrl.m in Sources */,

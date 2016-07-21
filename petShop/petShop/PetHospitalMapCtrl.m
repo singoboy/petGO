@@ -1,0 +1,224 @@
+//
+//  PetHospitalMapCtrl.m
+//  petShop
+//
+//  Created by GaryFan on 2016/7/21.
+//  Copyright © 2016年 user12. All rights reserved.
+//
+
+#import "PetHospitalMapCtrl.h"
+#import <MapKit/MapKit.h>
+#import<CoreLocation/CoreLocation.h>
+
+@interface PetHospitalMapCtrl ()<MKMapViewDelegate,CLLocationManagerDelegate>
+{
+    CLLocationManager *locationManager;
+}
+@property (weak, nonatomic) IBOutlet MKMapView *mainMapView;
+@end
+
+@implementation PetHospitalMapCtrl
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _mainMapView.delegate = self ;
+    locationManager =[CLLocationManager new];
+    [locationManager requestWhenInUseAuthorization];//取得使用者授權 要去info加入NSLocationWhenUseUsage.. 隱私授權只會問一次 對同一個app而言
+    // 加在info.plist黨裡面　就是存app自身要用的一些系統資料 ,讓app可以抓
+    
+    locationManager.desiredAccuracy=kCLLocationAccuracyBest;//desiredAccuracy 我所期待的精確度
+    //command +kCLLocationAccuracyBes=查看更多的選項,此選項會開啟GPS,(__MAC_10_7,__IPHONE_4_0) 表示從第幾版本開始支援,層級越高越耗電
+    locationManager.activityType=CLActivityTypeAutomotiveNavigation;
+    //活動的種類 來配置電力 有分 導航 運動 其他
+    locationManager.delegate=self;
+    [locationManager startUpdatingLocation];//回報位置
+    // Do any additional setup after loading the view.
+}
+
+- (IBAction)maptypecahnge:(id)sender {//Segment標準單選元件
+    
+    NSInteger targtIndex=[sender selectedSegmentIndex];//一定要用selectedSegmentIndex 注意
+    switch (targtIndex) {
+        case 0:
+            self.mainMapView.mapType=MKMapTypeStandard;
+            break;
+        case 1:
+            self.mainMapView.mapType=MKMapTypeSatellite;
+            break;
+        case 2:
+            self.mainMapView.mapType=MKMapTypeHybrid;
+            break;
+            
+    }
+    
+}
+- (IBAction)uersTrackingMondeChange:(id)sender {//使用者追蹤模式
+    NSInteger targtIndex=[sender selectedSegmentIndex];//一定要用selectedSegmentIndex 注意
+    switch (targtIndex) {
+        case 0:
+            self.mainMapView.userTrackingMode=MKUserTrackingModeNone;
+            break;
+        case 1:
+            self.mainMapView.userTrackingMode=MKUserTrackingModeFollow;//跑步 開車 等等狀態
+            break;
+        case 2:
+            self.mainMapView.userTrackingMode=MKUserTrackingModeFollowWithHeading;//除了上方狀態之外 還顯示使用者面對的方向
+            break;
+            
+    }
+    
+    
+}
+
+#pragma  mark -cLLocationManagerDelegate Method
+
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    
+    CLLocation *currentLocation=locations.lastObject;
+    //Cllocation 內還有altitude;海拔  horizontalAccuracy 水平精確度 50m 100m  verticalAccuracy;垂直精確度
+    //speed 會回報每秒幾公尺
+    //distanceFromLocation 兩個經緯度的直線距離
+    //路徑規劃 MKRoute
+    
+    
+    NSLog(@"Lat: %.6f,Lon:%.6f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
+    
+    //latitude 緯度 longitude 精度
+    
+    
+    //make region be changed only once(gcd的一種)
+    
+    static dispatch_once_t changeRengionOnceToken;
+    dispatch_once(&changeRengionOnceToken, ^{//changeRengionOnceToken 類似標籤 用來判斷是否執行過
+        //寫在這邊的程式碼 整個app 只執行一次
+        MKCoordinateRegion region=self.mainMapView.region;//region記錄地圖的中心跟縮放大小
+        region.center=currentLocation.coordinate;//第一次設定的位置存給region
+        region.span.latitudeDelta=0.01;//表示縮放到0.01個緯度  用1表示縮放到1緯度大小
+        region.span.longitudeDelta=0.01;//縮放到0.01經度
+        //但地球圓形  程式會自動調整
+        [self.mainMapView setRegion:region animated:YES];
+        
+        
+        NSMutableArray *list= [NSMutableArray new] ;
+        
+        
+        //製作一個假的座標
+        //        CLLocationCoordinate2D annotationCoordinate=currentLocation.coordinate;//傳入使用者目前位置
+        //        annotationCoordinate.latitude+=0.0005;
+        //        annotationCoordinate.longitude+=0.0005;
+        
+        MKPointAnnotation *annotion=[MKPointAnnotation new];//建立一個MKPointAnnotation物件 用來存標題副標題
+        annotion.coordinate=CLLocationCoordinate2DMake(25.025853, 121.522903);
+        annotion.title=@"古亭動物醫院";
+        annotion.subtitle=@"2369-3373";
+        [list addObject:annotion];
+        
+        
+        annotion=[MKPointAnnotation new];//建立一個MKPointAnnotation物件 用來存標題副標題
+        annotion.coordinate=CLLocationCoordinate2DMake(25.043161, 121.528862);
+        annotion.title=@"台灣動物醫院";
+        annotion.subtitle=@"2341-2128";
+        [list addObject:annotion];
+        
+        [self.mainMapView addAnnotations:list];//資料設定好了加到地圖上
+        
+    });
+}
+#pragma  mark MKmapviewdelegate
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    //監聽使用者位置 只要region改變就可以被掌握  看是要加入什麼服務給使用者 附近商電之類
+    MKCoordinateRegion region=self.mainMapView.region;
+    NSLog(@"regionDidChangeAnimated: lat:%.6f,lon:%.6f",region.center.latitude,region.center.longitude);
+    
+}
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    if(annotation==mapView.userLocation){
+        return nil;
+    }
+    
+    NSString *indentifier=@"store";
+    //官方圖釘版本
+    
+    //    MKPinAnnotationView *result=(MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:indentifier];//是否有可以回收的MKPinAnnotationView
+    //
+    //自訂圖釘版本
+    MKAnnotationView *result=[mapView dequeueReusableAnnotationViewWithIdentifier:indentifier];
+    
+    //(MKPinAnnotationView*)自訂版本不用轉型 因為MKAnnotationView這個類是MKPinAnnotationView的副類別
+    //方法原本就傳入(MKPinAnnotationView*) 型態
+    
+    
+    
+    if(result==nil){//如果沒有可以回收的來用 就重新造一個
+        //官方圖釘
+        //        result =[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:indentifier];
+        //
+        
+        result =[[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:indentifier];
+        
+    }else{
+        result.annotation=annotation;//地127行的MKPointAnnotation *annotion 傳進來的值
+    }
+    result.canShowCallout=true;//出現泡泡 如果沒有實作 viewForAnnotation 泡泡預設會出現 但如果用viewForAnnotation 這個設定要開啟
+    
+    //如果使用自訂圖標下面兩個方法沒有用
+    //    result.animatesDrop=true;
+    //   // result.pinColor=MKPinAnnotationColorPurple;只支援到8要注意8版本的用戶
+    //
+    //    result.pinTintColor=[UIColor blackColor];//9才開始支援
+    
+    
+    //以下自訂圖標圖片
+    
+    UIImage *Pinkimage=[UIImage imageNamed:@"pointRed.png"];//用途黨名把屠宰進來
+    result.image=Pinkimage;
+    
+    //pink出圖的時候  圖的尖端一定要在圖的正中間 上下左右算進來的正中心
+    
+    
+    //leftcalloutaccessoryView  點下圖標之後左邊出現一個圖標
+    
+    UIImage *detalImage=[UIImage imageNamed:@"Pet_Red.png"];
+    
+    
+    result.leftCalloutAccessoryView=[[UIImageView alloc]initWithImage:detalImage];
+    result.leftCalloutAccessoryView.contentMode =UIViewContentModeScaleAspectFit;
+    //rightcalloutaccessoryview 點下圖標之後右邊出現一個按鈕 用selector當點下去之後執行buttonTapped: 方法  點擊泡泡也可以
+    //    UIButton *button=[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    //    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    //    result.rightCalloutAccessoryView=button;
+    
+    //detailcalloutaccessoryview   IOS9之後才有 會取代原本的“真好吃欄位”
+    //    UIImage *detalImage=[UIImage imageNamed:@"u-bahn.png"];
+    //    UIImageView *detailImageview=[[UIImageView alloc]initWithImage:detalImage];
+    //    //    detailImageview.contentMode=UIViewContentModeScaleAspectFill;
+    //    //    detailImageview.clipsToBounds=true;用填滿全圖 超出的部分切掉
+    //    detailImageview.contentMode=UIViewContentModeScaleAspectFit;
+    //    result.detailCalloutAccessoryView=detailImageview;
+    return result;
+}
+
+-(void)buttonTapped:(id)sender{
+    NSLog(@"buttonTapped");
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
