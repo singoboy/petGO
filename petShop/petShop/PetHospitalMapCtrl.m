@@ -13,6 +13,8 @@
 @interface PetHospitalMapCtrl ()<MKMapViewDelegate,CLLocationManagerDelegate>
 {
     CLLocationManager *locationManager;
+    NSMutableArray *locationArray ;
+    CLLocationCoordinate2D nowCoordinate;
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mainMapView;
 @end
@@ -33,6 +35,8 @@
     //活動的種類 來配置電力 有分 導航 運動 其他
     locationManager.delegate=self;
     [locationManager startUpdatingLocation];//回報位置
+    [self getLocation];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -53,6 +57,7 @@
     }
     
 }
+
 - (IBAction)uersTrackingMondeChange:(id)sender {//使用者追蹤模式
     NSInteger targtIndex=[sender selectedSegmentIndex];//一定要用selectedSegmentIndex 注意
     switch (targtIndex) {
@@ -84,7 +89,7 @@
     //路徑規劃 MKRoute
     
     
-    NSLog(@"Lat: %.6f,Lon:%.6f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
+ //   NSLog(@"Lat: %.6f,Lon:%.6f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
     
     //latitude 緯度 longitude 精度
     
@@ -102,28 +107,33 @@
         [self.mainMapView setRegion:region animated:YES];
         
         
-        NSMutableArray *list= [NSMutableArray new] ;
+        NSMutableArray *mapList= [NSMutableArray new] ;
         
+        nowCoordinate=currentLocation.coordinate;//傳入使用者目前位置
         
-        //製作一個假的座標
-        //        CLLocationCoordinate2D annotationCoordinate=currentLocation.coordinate;//傳入使用者目前位置
-        //        annotationCoordinate.latitude+=0.0005;
-        //        annotationCoordinate.longitude+=0.0005;
+        if (locationArray.count == 0) {
+            [self showUIAlertCtrl:@"後台服務錯誤"];
+            return ;
+        }
         
-        MKPointAnnotation *annotion=[MKPointAnnotation new];//建立一個MKPointAnnotation物件 用來存標題副標題
-        annotion.coordinate=CLLocationCoordinate2DMake(25.025853, 121.522903);
-        annotion.title=@"古亭動物醫院";
-        annotion.subtitle=@"2369-3373";
-        [list addObject:annotion];
+    //    MKPointAnnotation *annotion= [MKPointAnnotation new];//建立一個MKPointAnnotation物件 用來存標題副標題
         
+        for (int i = 0; i<locationArray.count; i++) {
+           MKPointAnnotation *annotion= [MKPointAnnotation new]; //如果不在這邊new指標都會指向同一筆 顯示只有一筆
+            NSDictionary *item = locationArray[i];
+            double lat =[item[@"lat"] doubleValue];
+            double lon =[item[@"lon"] doubleValue];
+            NSString *name = item[@"name"];
+            NSString *phone = item[@"phone"];
+            
+            annotion.coordinate=CLLocationCoordinate2DMake(lat, lon);
+            annotion.title=name;
+            annotion.subtitle=phone;
+            
+            [mapList addObject:annotion];
+        }
         
-        annotion=[MKPointAnnotation new];//建立一個MKPointAnnotation物件 用來存標題副標題
-        annotion.coordinate=CLLocationCoordinate2DMake(25.043161, 121.528862);
-        annotion.title=@"台灣動物醫院";
-        annotion.subtitle=@"2341-2128";
-        [list addObject:annotion];
-        
-        [self.mainMapView addAnnotations:list];//資料設定好了加到地圖上
+        [self.mainMapView addAnnotations:mapList];//資料設定好了加到地圖上
         
     });
 }
@@ -131,7 +141,7 @@
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     //監聽使用者位置 只要region改變就可以被掌握  看是要加入什麼服務給使用者 附近商電之類
     MKCoordinateRegion region=self.mainMapView.region;
-    NSLog(@"regionDidChangeAnimated: lat:%.6f,lon:%.6f",region.center.latitude,region.center.longitude);
+  //  NSLog(@"regionDidChangeAnimated: lat:%.6f,lon:%.6f",region.center.latitude,region.center.longitude);
     
 }
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -203,6 +213,120 @@
 
 -(void)buttonTapped:(id)sender{
     NSLog(@"buttonTapped");
+    
+}
+
+-(void)getLocation{
+
+        NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/map_json.php"];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
+        [request setHTTPMethod:@"POST"];
+        NSString *postString = [NSString stringWithFormat:@"none"];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+        NSError *error = nil;
+    
+        /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
+         NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    if (error != nil) {
+        NSLog(@"Error parsing JSON.");
+        return ;
+    }
+        locationArray = [jsonArray mutableCopy];
+  //  NSLog(@"locationArray=%@",locationArray);
+
+
+}
+
+//導航
+- (IBAction)goShortCut:(id)sender {
+    
+    if (locationArray.count == 0) {
+        [self showUIAlertCtrl:@"server 連線錯誤"];
+        return ;
+    }
+    //找最近的物件
+    NSMutableDictionary *returnDic = [self countDistance];
+    
+//    NSLog(@"returnDic=%@",returnDic);
+    
+    CLLocationCoordinate2D now = CLLocationCoordinate2DMake(nowCoordinate.latitude, nowCoordinate.longitude);
+    
+    
+    CLLocationCoordinate2D target = CLLocationCoordinate2DMake([returnDic[@"lat"] doubleValue], [returnDic[@"lon"] doubleValue]);
+    
+    // 根據座標得到地標
+    MKPlacemark *pA = [[MKPlacemark alloc] initWithCoordinate:now addressDictionary:nil];
+    MKPlacemark *pB = [[MKPlacemark alloc] initWithCoordinate:target addressDictionary:nil];
+    
+    // 根據地標建立地圖項目
+    MKMapItem *miA = [[MKMapItem alloc] initWithPlacemark:pA];
+    MKMapItem *miB = [[MKMapItem alloc] initWithPlacemark:pB];
+    
+    miA.name = @"現在位置";
+    miB.name = returnDic[@"name"];
+    miB.phoneNumber =  returnDic[@"phone"]  ;
+    // 將起迄點放到陣列中
+    NSArray *routes = @[miA, miB];
+    
+    // 設定為開車模式
+    NSDictionary *param = [NSDictionary dictionaryWithObject:MKLaunchOptionsDirectionsModeWalking forKey:MKLaunchOptionsDirectionsModeKey];
+    
+    // 開啟地圖開始導航
+    [MKMapItem openMapsWithItems:routes launchOptions:param];
+    
+}
+
+-(NSMutableDictionary *)countDistance{
+    
+    double  shortDistance = 0 ;
+    NSMutableDictionary *selectDic ;
+    for (int i = 0; i<  locationArray.count; i++) {
+        NSMutableDictionary *dic  = locationArray[i];
+        CLLocation *current = [[CLLocation alloc] initWithLatitude:nowCoordinate.latitude longitude:nowCoordinate.longitude];
+        
+        CLLocation *itemLoc = [[CLLocation alloc] initWithLatitude:[dic[@"lat"] doubleValue]   longitude:[dic[@"lon"] doubleValue]];   //notice 複製貼上時 lat 忘記改成 lon
+        
+        CLLocationDistance itemDist = [itemLoc distanceFromLocation:current];
+
+        if (i == 0) {
+            shortDistance = itemDist ;
+           // selectDic = dic ;
+            selectDic = [dic mutableCopy] ;
+        }
+        
+        if (itemDist < shortDistance) {
+            
+        NSLog(@"dic name: %@", dic[@"name"]);
+            NSLog(@"Distance: %f", itemDist);
+            shortDistance = itemDist ;
+          //  selectDic = dic ;       // 錯誤版本 ??  dic 的指標 給了 selecDic  所以 dic變  selectDic 跟者變
+           selectDic = [dic mutableCopy];  //只複製值
+            
+        }
+
+        
+       // NSLog(@"Distance: %f", itemDist);
+    }
+    
+    return selectDic ;
+}
+
+
+-(void)showUIAlertCtrl:(NSString *)message{
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"提示" message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 

@@ -226,7 +226,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-di-7yS">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-di-7yS">
                                 <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jce-q7-XEF">
@@ -251,17 +251,27 @@
                                     <action selector="uersTrackingMondeChange:" destination="7UK-Fc-mi2" eventType="valueChanged" id="nrJ-Y2-WIQ"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkQ-30-rZa">
+                                <rect key="frame" x="254" y="90" width="30" height="30"/>
+                                <state key="normal" title="導航"/>
+                                <connections>
+                                    <action selector="goShortCut:" destination="7UK-Fc-mi2" eventType="touchUpInside" id="qba-k1-h5C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tkQ-30-rZa" firstAttribute="centerY" secondItem="Qc3-77-UdE" secondAttribute="centerY" id="21e-31-3px"/>
                             <constraint firstItem="U3S-di-7yS" firstAttribute="top" secondItem="Hcg-Qh-Fss" secondAttribute="bottom" id="2t3-6r-ht3"/>
                             <constraint firstItem="U3S-di-7yS" firstAttribute="leading" secondItem="RKW-N3-k3A" secondAttribute="leading" id="6rf-8n-YFI"/>
                             <constraint firstItem="wjP-of-8JS" firstAttribute="top" secondItem="U3S-di-7yS" secondAttribute="bottom" id="9Z5-NX-CEm"/>
                             <constraint firstItem="Jce-q7-XEF" firstAttribute="top" secondItem="Hcg-Qh-Fss" secondAttribute="bottom" constant="22" id="HBS-kW-2Ec"/>
                             <constraint firstAttribute="trailing" secondItem="Qc3-77-UdE" secondAttribute="trailing" constant="99" id="N54-SU-Jqf"/>
+                            <constraint firstItem="tkQ-30-rZa" firstAttribute="leading" secondItem="Qc3-77-UdE" secondAttribute="trailing" constant="33" id="NZE-Lh-BN7"/>
                             <constraint firstAttribute="trailing" secondItem="Jce-q7-XEF" secondAttribute="trailing" constant="100" id="Ntr-Cv-6cu"/>
                             <constraint firstItem="Jce-q7-XEF" firstAttribute="leading" secondItem="RKW-N3-k3A" secondAttribute="leading" constant="100" id="cd4-BW-HXf"/>
                             <constraint firstItem="Qc3-77-UdE" firstAttribute="top" secondItem="Jce-q7-XEF" secondAttribute="bottom" constant="21" id="eSs-Zp-W9z"/>
+                            <constraint firstAttribute="trailing" secondItem="tkQ-30-rZa" secondAttribute="trailing" constant="36" id="g1D-bK-Zws"/>
                             <constraint firstAttribute="trailing" secondItem="U3S-di-7yS" secondAttribute="trailing" id="lUU-iQ-avy"/>
                             <constraint firstItem="Qc3-77-UdE" firstAttribute="centerX" secondItem="Jce-q7-XEF" secondAttribute="centerX" id="ygE-Dy-KAb"/>
                             <constraint firstItem="Qc3-77-UdE" firstAttribute="leading" secondItem="RKW-N3-k3A" secondAttribute="leading" constant="99" id="yp5-BA-MTJ"/>
