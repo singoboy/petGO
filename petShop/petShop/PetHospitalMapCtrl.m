@@ -260,18 +260,18 @@
             NSMutableArray<MKPointAnnotation*> *items = [NSMutableArray new];
             
             for (int i = 0; i<locationArray.count; i++) {
-                MKPointAnnotation *annotion= [MKPointAnnotation new]; //如果不在這邊new指標都會指向同一筆 顯示只有一筆
+                MKPointAnnotation *annotation= [MKPointAnnotation new]; //如果不在這邊new指標都會指向同一筆 顯示只有一筆
                 NSDictionary *item = locationArray[i];
                 double lat =[item[@"lat"] doubleValue];
                 double lon =[item[@"lon"] doubleValue];
                 NSString *name = item[@"name"];
                 NSString *phone = item[@"phone"];
                 
-                annotion.coordinate=CLLocationCoordinate2DMake(lat, lon);
-                annotion.title=name;
-                annotion.subtitle=phone;
+                annotation.coordinate=CLLocationCoordinate2DMake(lat, lon);
+                annotation.title=name;
+                annotation.subtitle=phone;
                 
-                [items addObject:annotion];
+                [items addObject:annotation];
             }
             
             [self.mainMapView addAnnotations:items];//資料設定好了加到地圖上
