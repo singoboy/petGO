@@ -35,7 +35,7 @@
     //活動的種類 來配置電力 有分 導航 運動 其他
     locationManager.delegate=self;
     [locationManager startUpdatingLocation];//回報位置
-    [self getLocation];
+    [self getLocations];
     
     // Do any additional setup after loading the view.
 }
@@ -107,10 +107,10 @@
         [self.mainMapView setRegion:region animated:YES];
         
         
-        NSMutableArray *mapList= [NSMutableArray new] ;
+//        NSMutableArray *mapList= [NSMutableArray new] ;
         
         nowCoordinate=currentLocation.coordinate;//傳入使用者目前位置
-        
+/*
         if (locationArray.count == 0) {
             [self showUIAlertCtrl:@"後台服務錯誤"];
             return ;
@@ -134,7 +134,7 @@
         }
         
         [self.mainMapView addAnnotations:mapList];//資料設定好了加到地圖上
-        
+*/
     });
 }
 #pragma  mark MKmapviewdelegate
@@ -215,7 +215,7 @@
     NSLog(@"buttonTapped");
     
 }
-
+/*
 -(void)getLocation{
 
         NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/map_json.php"];
@@ -230,7 +230,7 @@
     
         NSError *error = nil;
     
-        /* notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY */
+        // notices 回傳的是 NSARRAY 不是 NSMUTABLEARRAY
          NSArray  *jsonArray = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
     
     if (error != nil) {
@@ -242,6 +242,49 @@
 
 
 }
+*/
+-(void)getLocations {
+    
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8888/petShop/map_json.php"];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        locationArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSMutableArray<MKPointAnnotation*> *items = [NSMutableArray new];
+            
+            for (int i = 0; i<locationArray.count; i++) {
+                MKPointAnnotation *annotion= [MKPointAnnotation new]; //如果不在這邊new指標都會指向同一筆 顯示只有一筆
+                NSDictionary *item = locationArray[i];
+                double lat =[item[@"lat"] doubleValue];
+                double lon =[item[@"lon"] doubleValue];
+                NSString *name = item[@"name"];
+                NSString *phone = item[@"phone"];
+                
+                annotion.coordinate=CLLocationCoordinate2DMake(lat, lon);
+                annotion.title=name;
+                annotion.subtitle=phone;
+                
+                [items addObject:annotion];
+            }
+            
+            [self.mainMapView addAnnotations:items];//資料設定好了加到地圖上
+            
+        });
+        
+    }];
+    
+    [task resume];
+    
+}
+
+
 
 //導航
 - (IBAction)goShortCut:(id)sender {
