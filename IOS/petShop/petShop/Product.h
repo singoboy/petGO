@@ -15,6 +15,6 @@
 @property(nonatomic) NSNumber *price;
 @property(nonatomic) NSString *imageName;
 @property(nonatomic) NSDate *insertTime;
-
+@property(nonatomic) NSNumber * quantity;
 
 @end

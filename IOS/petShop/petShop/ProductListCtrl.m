@@ -123,6 +123,13 @@
     NSString *price = [item objectForKey: @"price"];
     NSString *imageName = [item objectForKey: @"imageName"];
     
+    NSInteger *count = [self checkAddOrNot:productID];
+    
+    if (count > 0) {
+        [self showUIAlertCtrl:@"已加入"];
+        return ;
+    }
+    
     NSString *output =  [NSString stringWithFormat:@" %@  加入購物車",name];
     
     NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
@@ -134,6 +141,7 @@
     product.name=name;
     product.price=[NSNumber numberWithInt:[price intValue]];
     product.imageName=imageName;
+    product.quantity = [NSNumber numberWithInt :1];
     
     product.insertTime = [NSDate date];
     
@@ -161,6 +169,36 @@
     
 }
 
+-(NSInteger *)checkAddOrNot:(NSString *)productId{
+    
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    //要抓取的物件
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Product"];
+    
+    NSError *error = nil ;
+    //執行查詢後的結果
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"productID=%@",productId];
+    
+    NSArray *search =[results filteredArrayUsingPredicate:predicate];
+
+   // NSLog(@"search.length %lu",(unsigned long)search.count);
+    
+    return search.count;
+}
+
+-(void)showUIAlertCtrl:(NSString *)message{
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"提示" message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
 
 
 /*
