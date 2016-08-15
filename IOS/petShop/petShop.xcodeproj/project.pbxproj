@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2607DAFAE0F791AE02E3FC75 /* libPods-petShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EBBEC6A8B6F849181EB554 /* libPods-petShop.a */; };
 		4768A8CF1D24AE4D00C71C91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8CE1D24AE4D00C71C91 /* main.m */; };
 		4768A8D21D24AE4D00C71C91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8D11D24AE4D00C71C91 /* AppDelegate.m */; };
 		4768A8D81D24AE4D00C71C91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8D61D24AE4D00C71C91 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05EBBEC6A8B6F849181EB554 /* libPods-petShop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-petShop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4768A8CA1D24AE4D00C71C91 /* petShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4768A8CE1D24AE4D00C71C91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4768A8D01D24AE4D00C71C91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +79,8 @@
 		4EF724C31D35340D006E638A /* SalonCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonCtrl.m; sourceTree = "<group>"; };
 		4EF724C51D353459006E638A /* ReserveCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveCtrl.h; sourceTree = "<group>"; };
 		4EF724C61D353459006E638A /* ReserveCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveCtrl.m; sourceTree = "<group>"; };
+		7CE6B7691D921588D91E6B53 /* Pods-petShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-petShop/Pods-petShop.release.xcconfig"; sourceTree = "<group>"; };
+		D5C07EBAA6535F0CEA0D7D18 /* Pods-petShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-petShop/Pods-petShop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,12 +90,21 @@
 			files = (
 				4E2C53BC1D40DF9D0085A538 /* CoreLocation.framework in Frameworks */,
 				4E2C53BA1D40DF900085A538 /* MapKit.framework in Frameworks */,
+				2607DAFAE0F791AE02E3FC75 /* libPods-petShop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18BD356A96A773EAA040962E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05EBBEC6A8B6F849181EB554 /* libPods-petShop.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4768A8C11D24AE4D00C71C91 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +112,8 @@
 				4E2C53B91D40DF900085A538 /* MapKit.framework */,
 				4768A8CC1D24AE4D00C71C91 /* petShop */,
 				4768A8CB1D24AE4D00C71C91 /* Products */,
+				E7DC7A810949D9FFC72300A7 /* Pods */,
+				18BD356A96A773EAA040962E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +212,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		E7DC7A810949D9FFC72300A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5C07EBAA6535F0CEA0D7D18 /* Pods-petShop.debug.xcconfig */,
+				7CE6B7691D921588D91E6B53 /* Pods-petShop.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4768A8E11D24AE4D00C71C91 /* Build configuration list for PBXNativeTarget "petShop" */;
 			buildPhases = (
+				13C99F37EFC8C3C4E4D07194 /* [CP] Check Pods Manifest.lock */,
 				4768A8C61D24AE4D00C71C91 /* Sources */,
 				4768A8C71D24AE4D00C71C91 /* Frameworks */,
 				4768A8C81D24AE4D00C71C91 /* Resources */,
+				7743EE33F4D54DD3CAB968C9 /* [CP] Embed Pods Frameworks */,
+				00301B13825CDCDB475E0AC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +297,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00301B13825CDCDB475E0AC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-petShop/Pods-petShop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13C99F37EFC8C3C4E4D07194 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7743EE33F4D54DD3CAB968C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-petShop/Pods-petShop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4768A8C61D24AE4D00C71C91 /* Sources */ = {
@@ -402,6 +477,7 @@
 		};
 		4768A8E21D24AE4D00C71C91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5C07EBAA6535F0CEA0D7D18 /* Pods-petShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = petShop/Info.plist;
@@ -413,6 +489,7 @@
 		};
 		4768A8E31D24AE4D00C71C91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CE6B7691D921588D91E6B53 /* Pods-petShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = petShop/Info.plist;

@@ -10,6 +10,7 @@
 #import "CoreDataHelper.h"
 #import "Product.h"
 #import "ProductListCtrl.h"
+#import "MBProgressHUD.h"
 
 
 @interface CheckoutCtrl ()<UITextFieldDelegate>
@@ -71,8 +72,11 @@
         return ;
     }
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSString *orderResponse = [self addProductOrder];
     if ([orderResponse  isEqualToString:@"error"]) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self showUIAlertCtrl:@"結帳失敗"];
         return;
     }
@@ -94,6 +98,7 @@
     }
     [self.delegate clearProducts];
     //   [self showUIAlertCtrl:@"訂單已生成"];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [self.navigationController popViewControllerAnimated:YES];
     

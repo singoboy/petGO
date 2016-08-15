@@ -172,6 +172,8 @@
     
     [self.tableView endUpdates];
     
+ //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];   //測試又ok
+    
     [self getTotalPrice];
     
     //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
