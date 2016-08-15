@@ -61,7 +61,7 @@
         [productList addObjectsFromArray:results];
         NSLog(@"productList_count= %lu",(unsigned long)productList.count);
     }
-
+    
 }
 
 
@@ -174,7 +174,7 @@
     
     [self.tableView endUpdates];
     
- //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];   //測試又ok
+    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];   //測試又ok
     
     [self getTotalPrice];
     
@@ -195,7 +195,7 @@
         CheckoutCtrl *checkoutCtrl =segue.destinationViewController;
         checkoutCtrl.delegate = self ;
         checkoutCtrl.member = member;
- 
+        
     }
 }
 
@@ -246,12 +246,21 @@
     NSLog(@"pdoruct.id %@",product.productID);
     
     //update prduct 資料 and save  reload productList  and reload data ;
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
     
-
+    NSFetchRequest *fetchRequest=[NSFetchRequest fetchRequestWithEntityName:@"Product"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"productID=%@",product.productID]; // If required to fetch specific vehicle
+    fetchRequest.predicate=predicate;
+    Product *productData=[[context executeFetchRequest:fetchRequest error:nil] lastObject];
     
-
+    productData.quantity = [NSNumber numberWithDouble:sender.value] ;
+    
+    
+    
+    [context save:nil];
     
     [self.tableView reloadRowsAtIndexPaths:@[sender.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
     [self getTotalPrice];
     
 }

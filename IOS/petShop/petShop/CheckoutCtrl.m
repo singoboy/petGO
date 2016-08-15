@@ -134,14 +134,14 @@
 -(NSString *)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
     
     //使用get 傳productList 　會超過256 上限
-    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add.php"];
+    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add_android.php"];
     NSURL *url = [NSURL URLWithString:urlStr];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@",orderID,product.productID,product.name,product.price];
+    NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@&quantity=%@&itemTotal=%@",orderID,product.productID,product.name,product.price,product.quantity,[self getItemTotal:product]];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
@@ -165,13 +165,19 @@
     NSInteger totalPrice  = 0;
     
     for (Product* element in productList) {
-        totalPrice += [element.price integerValue];
+        totalPrice += [element.price integerValue] * [element.quantity integerValue];
     }
     
     _totalLabel.text=[NSString stringWithFormat:@"總共 %ld 元" ,(long)totalPrice];
     return totalPrice ;
     
 }
+
+-(NSString * )getItemTotal: (Product *)product{
+    NSInteger ItemTotal = [product.price  integerValue] *[product.quantity integerValue];
+    return [NSString stringWithFormat:@"%ld",(long)ItemTotal]  ;
+}
+
 
 -(void)showUIAlertCtrl:(NSString *)message{
     
