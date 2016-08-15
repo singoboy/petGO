@@ -37,38 +37,33 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        
-        productList = [NSMutableArray array];
-        //query from coredata
-        NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
-        //要抓取的物件
-        NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Product"];
-        //排序條件
-        NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"insertTime" ascending:YES];
-        //set 條件
-        [request setSortDescriptors:@[timeSort]];
-        NSError *error = nil ;
-        //執行查詢後的結果
-        NSArray *results = [context executeFetchRequest:request error:&error];
-        if (error) {
-            NSLog(@"error %@",error);
-        }
-        else{
-            [productList addObjectsFromArray:results];
-            NSLog(@"productList_count= %lu",(unsigned long)productList.count);
-        }
-        
-        //        NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
-        //       Product *product  = [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
-        //        product.productID = [NSNumber numberWithInt:1];
-        //        product.name = @"狗罐頭";
-        //        product.price = [NSNumber numberWithInt:100];
-        //        product.imageName = @"mushroom.jpeg";
-        //        [productList addObject:product];
-        
     }
     return self;
 }
+
+-(void)loadData{
+    productList = [NSMutableArray array];
+    //query from coredata
+    NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    //要抓取的物件
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Product"];
+    //排序條件
+    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"insertTime" ascending:YES];
+    //set 條件
+    [request setSortDescriptors:@[timeSort]];
+    NSError *error = nil ;
+    //執行查詢後的結果
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"error %@",error);
+    }
+    else{
+        [productList addObjectsFromArray:results];
+        NSLog(@"productList_count= %lu",(unsigned long)productList.count);
+    }
+
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,6 +77,9 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    [self loadData];
+    
     //query from coredata
     NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
     //要抓取的物件
@@ -212,7 +210,7 @@
     NSInteger totalPrice  = 0;
     
     for (Product* element in productList) {
-        totalPrice += [element.price integerValue];
+        totalPrice += [element.price integerValue] * [element.quantity integerValue];
     }
     
     _totalLabel.text=[NSString stringWithFormat:@"總共 %ld 元" ,(long)totalPrice];
@@ -242,15 +240,19 @@
     
     NSInteger  index = sender.indexPath.row;
     NSLog(@"sender.value %f" , sender.value);
-    NSMutableDictionary *dic =  productList[index];
+    Product *product =  productList[index];
+    product.quantity =  [NSNumber numberWithDouble:sender.value];
+    
+    NSLog(@"pdoruct.id %@",product.productID);
     
     //update prduct 資料 and save  reload productList  and reload data ;
     
-    NSLog(@"dic%@" ,dic[@"data"]);
+
     
 
     
     [self.tableView reloadRowsAtIndexPaths:@[sender.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self getTotalPrice];
     
 }
 
