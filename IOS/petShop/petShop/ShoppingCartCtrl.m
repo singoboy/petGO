@@ -12,6 +12,7 @@
 #import "CheckoutCtrl.h"
 #import "Member.h"
 #import "CoreDataHelper.h"
+#import "ShoppingCartCell.h"
 
 
 @interface ShoppingCartCtrl ()<UITableViewDataSource,UITableViewDelegate>
@@ -136,7 +137,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShoppingCartCell"];
     
     Product *product = [productList objectAtIndex:indexPath.row];
     
@@ -148,10 +149,13 @@
     NSURL *imageURL = [NSURL URLWithString:imageLocation];
     NSData *data = [NSData dataWithContentsOfURL:imageURL];
     
-    cell.textLabel.text = product.name;
+    cell.name.text = product.name;
     cell.imageView.image = [UIImage imageWithData:data];
-    cell.detailTextLabel.text =   [NSString stringWithFormat:@"%@",product.price];
-    
+    cell.price.text =   [NSString stringWithFormat:@"%@",product.price];
+    cell.number.text =  [NSString stringWithFormat:@"%@",product.quantity];
+    cell.stepper.indexPath = indexPath ;
+    cell.stepper.value = [product.quantity doubleValue];
+    cell.stepper.minimumValue = 1;
     
     return cell;
     
@@ -233,6 +237,23 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
+- (IBAction)numberCtrl:(CartStepper *)sender {
+    
+    NSInteger  index = sender.indexPath.row;
+    NSLog(@"sender.value %f" , sender.value);
+    NSMutableDictionary *dic =  productList[index];
+    
+    //update prduct 資料 and save  reload productList  and reload data ;
+    
+    NSLog(@"dic%@" ,dic[@"data"]);
+    
+
+    
+    [self.tableView reloadRowsAtIndexPaths:@[sender.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
+
 
 /*
  #pragma mark - Navigation

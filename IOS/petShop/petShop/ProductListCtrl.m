@@ -133,6 +133,7 @@
     NSString *output =  [NSString stringWithFormat:@" %@  加入購物車",name];
     
     NSManagedObjectContext *context = [CoreDataHelper sharedInstance].managedObjectContext;
+    
     Product *product= [NSEntityDescription insertNewObjectForEntityForName:@"Product" inManagedObjectContext:context];
     
     

@@ -14,6 +14,8 @@
 		4768A8DA1D24AE4D00C71C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8D91D24AE4D00C71C91 /* Assets.xcassets */; };
 		4768A8DD1D24AE4D00C71C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8DB1D24AE4D00C71C91 /* LaunchScreen.storyboard */; };
 		4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */; };
+		476FFC0B1D618CEA002BF6C6 /* ShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFC0A1D618CEA002BF6C6 /* ShoppingCartCell.m */; };
+		476FFC141D61AD55002BF6C6 /* CartStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFC131D61AD55002BF6C6 /* CartStepper.m */; };
 		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
 		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
 		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
@@ -46,6 +48,10 @@
 		4768A8DE1D24AE4D00C71C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListCtrl.h; sourceTree = "<group>"; };
 		4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListCtrl.m; sourceTree = "<group>"; };
+		476FFC091D618CEA002BF6C6 /* ShoppingCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartCell.h; sourceTree = "<group>"; };
+		476FFC0A1D618CEA002BF6C6 /* ShoppingCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartCell.m; sourceTree = "<group>"; };
+		476FFC121D61AD55002BF6C6 /* CartStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartStepper.h; sourceTree = "<group>"; };
+		476FFC131D61AD55002BF6C6 /* CartStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartStepper.m; sourceTree = "<group>"; };
 		47F89AF21D3878BE00C1B3AD /* MemberCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCtrl.h; sourceTree = "<group>"; };
 		47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCtrl.m; sourceTree = "<group>"; };
 		47F89AF51D38872C00C1B3AD /* RegisterCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterCtrl.h; sourceTree = "<group>"; };
@@ -200,6 +206,10 @@
 				4EC9324B1D2D2D8C004E637C /* Product.m */,
 				4E7ADC401D38FE9B009163B8 /* Member.h */,
 				4E7ADC411D38FE9B009163B8 /* Member.m */,
+				476FFC091D618CEA002BF6C6 /* ShoppingCartCell.h */,
+				476FFC0A1D618CEA002BF6C6 /* ShoppingCartCell.m */,
+				476FFC121D61AD55002BF6C6 /* CartStepper.h */,
+				476FFC131D61AD55002BF6C6 /* CartStepper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -351,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476FFC141D61AD55002BF6C6 /* CartStepper.m in Sources */,
 				4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */,
 				4EC9324C1D2D2D8C004E637C /* Product.m in Sources */,
 				4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */,
@@ -366,6 +377,7 @@
 				4E7ADC421D38FE9B009163B8 /* Member.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
 				47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */,
+				476FFC0B1D618CEA002BF6C6 /* ShoppingCartCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
