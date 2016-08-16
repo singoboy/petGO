@@ -68,5 +68,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:id="@+id/rvLists" />
+        android:id="@+id/rvLists"
+        android:layout_marginBottom="50dp" />
 </LinearLayout>

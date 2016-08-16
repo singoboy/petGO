@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.petgo.common.Common;
 import java.util.List;
 
@@ -87,7 +89,9 @@ public class CartActivity extends AppCompatActivity {
         if (requestCode ==  REQUEST_CHECKOUT && resultCode == Activity.RESULT_OK){
             //訂單完成後
             Log.i("取得登入資料後","取得登入資料後");
-            finish();
+
+            Toast.makeText(getApplicationContext(), "訂單成立", Toast.LENGTH_SHORT).show();
+          //  finish();
 
 
         }

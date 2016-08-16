@@ -89,4 +89,18 @@
         android:layout_below="@+id/tvTotal"
         android:layout_centerHorizontal="true"
         android:onClick="buy" />
+
+    <RelativeLayout
+        style="@style/GenericProgressBackground"
+        android:id="@+id/loadingPanel"
+        >
+        <ProgressBar
+            style="@style/GenericProgressIndicator"/>
+    </RelativeLayout>
+
+
+
+
+
+
 </RelativeLayout>

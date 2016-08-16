@@ -34,6 +34,7 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         findViews();
         total = showTotal(Common.CART);
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
     }
 
     @Override
@@ -79,6 +80,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     private void addOrder(){
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         String url = Common.URL + "order_add.php";
         OkHttpClient mOkHttpClient = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder()
@@ -113,7 +115,8 @@ public class CheckoutActivity extends AppCompatActivity {
                         public void run() {
                             //   Common.member=member;
                             Common.CART.clear();
-                            Toast.makeText(getApplicationContext(), "訂單成立", Toast.LENGTH_SHORT).show();
+                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
                             setResult(RESULT_OK);  // or go to view MainActivity?
                             finish();
                         }
@@ -124,6 +127,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "連線失敗", Toast.LENGTH_SHORT).show();
                         }
                     });
