@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2016 at 02:43 PM
+-- Generation Time: Aug 16, 2016 at 08:03 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `detail` (
   `D_PPrice` int(11) DEFAULT NULL,
   `D_PQuantity` int(11) DEFAULT NULL,
   `D_ItemTotal` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detail`
@@ -57,7 +57,39 @@ INSERT INTO `detail` (`D_ID`, `D_OrderID`, `D_ProductID`, `D_PName`, `D_PPrice`,
 (14, '2016071618570326937', 3, '狗罐頭', 150, 1, 150),
 (15, '2016071618570326937', 2, '貓罐頭', 100, 1, 100),
 (16, '20160723144056ac96e', 2, '貓罐頭', 100, 1, 100),
-(17, '20160723144056ac96e', 3, '狗罐頭', 150, 1, 150);
+(17, '20160723144056ac96e', 3, '狗罐頭', 150, 1, 150),
+(18, '2016081221012464f11', 2, '貓罐頭', 100, 3, 100),
+(19, '2016081221012464f11', 3, '狗罐頭', 150, 1, 150),
+(20, '2016081221012464f11', 1, '蘑菇', 50, 1, 50),
+(21, '201608161636576f137', 1, '蘑菇', 50, 1, 50),
+(22, '201608161636576f137', 2, '貓罐頭', 100, 1, 100),
+(23, '201608161636576f137', 3, '狗罐頭', 150, 1, 150),
+(24, '201608161636576f137', 4, '貓砂', 250, 1, 250),
+(25, '20160816183800b4587', 1, '蘑菇', 50, 1, 50),
+(26, '20160816183800b4587', 2, '貓罐頭', 100, 1, 100),
+(27, '20160816183800b4587', 3, '狗罐頭', 150, 1, 150),
+(28, '20160816183800b4587', 4, '貓砂', 250, 1, 250),
+(29, '20160816183800b4587', 5, '潔牙骨', 100, 1, 100),
+(30, '20160816183800b4587', 6, '兔飼料', 300, 1, 300),
+(31, '201608161947527fb7d', 1, '蘑菇', 50, 1, 50),
+(32, '201608161947527fb7d', 2, '貓罐頭', 100, 1, 100),
+(33, '201608161947527fb7d', 3, '狗罐頭', 150, 1, 150),
+(34, '201608161947527fb7d', 4, '貓砂', 250, 1, 250),
+(35, '201608161947527fb7d', 5, '潔牙骨', 100, 1, 100),
+(36, '2016081619532633654', 1, '蘑菇', 50, 1, 50),
+(37, '2016081619532633654', 2, '貓罐頭', 100, 1, 100),
+(38, '2016081619532633654', 3, '狗罐頭', 150, 1, 150),
+(39, '2016081619532633654', 4, '貓砂', 250, 1, 250),
+(40, '2016081619555654ae7', 1, '蘑菇', 50, 1, 50),
+(41, '2016081619555654ae7', 3, '狗罐頭', 150, 1, 150),
+(42, '2016081619555654ae7', 4, '貓砂', 250, 1, 250),
+(43, '2016081619555654ae7', 5, '潔牙骨', 100, 1, 100),
+(44, '201608162001148c25e', 1, '蘑菇', 50, 1, 50),
+(45, '201608162001148c25e', 2, '貓罐頭', 100, 1, 100),
+(46, '201608162001148c25e', 3, '狗罐頭', 150, 2, 300),
+(47, '201608162001148c25e', 4, '貓砂', 250, 2, 500),
+(48, '201608162001148c25e', 5, '潔牙骨', 100, 1, 100),
+(49, '201608162001148c25e', 6, '兔飼料', 300, 3, 900);
 
 -- --------------------------------------------------------
 
@@ -97,7 +129,7 @@ CREATE TABLE `orders` (
   `O_Date` datetime DEFAULT NULL,
   `O_Total` int(11) DEFAULT NULL,
   `O_MemberID` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
@@ -110,7 +142,14 @@ INSERT INTO `orders` (`O_Index`, `O_OrderID`, `O_Date`, `O_Total`, `O_MemberID`)
 (4, '2016071617122603da3', '2016-07-16 17:12:26', 50, 7),
 (5, '20160716171512c4b0c', '2016-07-16 17:15:12', 250, 6),
 (6, '2016071618570326937', '2016-07-16 18:57:03', 250, 6),
-(7, '20160723144056ac96e', '2016-07-23 14:40:56', 250, 7);
+(7, '20160723144056ac96e', '2016-07-23 14:40:56', 250, 7),
+(8, '2016081221012464f11', '2016-08-12 21:01:24', 500, 7),
+(9, '201608161636576f137', '2016-08-16 16:36:57', 550, 6),
+(10, '20160816183800b4587', '2016-08-16 18:38:00', 950, 6),
+(11, '201608161947527fb7d', '2016-08-16 19:47:52', 650, 6),
+(12, '2016081619532633654', '2016-08-16 19:53:26', 550, 6),
+(13, '2016081619555654ae7', '2016-08-16 19:55:56', 550, 6),
+(14, '201608162001148c25e', '2016-08-16 20:01:14', 1950, 6);
 
 -- --------------------------------------------------------
 
@@ -123,7 +162,7 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `price` int(50) NOT NULL,
   `imageName` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
@@ -132,7 +171,10 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`productID`, `name`, `price`, `imageName`) VALUES
 (1, '蘑菇', 50, 'mushroom.jpeg'),
 (2, '貓罐頭', 100, 'catcan.jpeg'),
-(3, '狗罐頭', 150, 'dogcan.jpeg');
+(3, '狗罐頭', 150, 'dogcan.jpeg'),
+(4, '貓砂', 250, 'soild.jpg'),
+(5, '潔牙骨', 100, 'goo.jpg'),
+(6, '兔飼料', 300, 'rabit.jpg');
 
 -- --------------------------------------------------------
 
@@ -467,7 +509,7 @@ ALTER TABLE `reserve`
 -- AUTO_INCREMENT for table `detail`
 --
 ALTER TABLE `detail`
-  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `D_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -477,12 +519,12 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `O_Index` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `P_H_MAP`
 --
