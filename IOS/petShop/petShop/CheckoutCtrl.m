@@ -74,37 +74,8 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *orderResponse = [self addProductOrder];
-    if ([orderResponse  isEqualToString:@"error"]) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self showUIAlertCtrl:@"結帳失敗"];
-        return;
-    }
-    for (int i = 0; i<productList.count;  i++) {
-        [self addProductDetail:orderResponse withProduct:productList[i]];
-    }
+    [self addProductOrder];
     //此處因該再做detail筆數的確認
-    
-    //刪除coreData內的資料
-    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-    for (int i = 0; i<productList.count;  i++) {
-        Product *product = productList[i];
-        [helper.managedObjectContext deleteObject:product];
-    }
-    NSError *error = nil ;
-    [helper.managedObjectContext save:&error];
-    if (error) {
-        NSLog(@"error saving %@",error);
-    }
-    [self.delegate clearProducts];
-    //   [self showUIAlertCtrl:@"訂單已生成"];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    // Note 表示切換畫面後還會往下執行
-    [self.delegate showUIAlertCtrl:@"訂單已生成"];
-    
     
     /* Note  畫面會被UIAlertCtrl卡住無法切換  */
     //    ProductListCtrl *productListCtrl = [self.storyboard   instantiateViewControllerWithIdentifier:@"productListCtrl"];
@@ -114,25 +85,80 @@
     
 }
 
--(NSString *)addProductOrder{
+-(void)addProductOrder{
+
+    //0816 取消同步 改異步
+//    NSInteger total = [self getTotalPrice];
+//    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/order_add.php"];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+//                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                                       timeoutInterval:60.0];
+//    [request setHTTPMethod:@"POST"];
+//    NSString *postString = [NSString stringWithFormat:@"total=%ld&memberID=%@",total,self.member.memberID];
+//    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+//    return result ;
     
+    //讀取轉轉轉開始
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSInteger total = [self getTotalPrice];
-    NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/order_add.php"];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-    [request setHTTPMethod:@"POST"];
+    NSURL *phpURL=[NSURL URLWithString:@"http://localhost:8888/petShop/order_add.php"];
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:phpURL];
+    request.HTTPMethod=@"POST";
+    
     NSString *postString = [NSString stringWithFormat:@"total=%ld&memberID=%@",total,self.member.memberID];
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    return result ;
+    
+    request.HTTPBody=[postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    NSURLSession *session=[NSURLSession  sharedSession];
+    
+    NSURLSessionTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSString *returnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"$$$$$$$$$$ %@",returnString);
+        
+        if (![returnString isEqualToString:@"error"]){
+            
+            for (int i = 0; i<productList.count; i++) {
+                Product *product =productList[i];
+                [self addProductDetail:returnString withProduct:product] ;
+            }
+            [self deleteCoreDataWithProducts];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate clearProducts];
+                //讀取轉轉轉停止
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                 [self.delegate showUIAlertCtrl:@"訂單已生成"];
+                
+            });
+            
+        } else {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //讀取轉轉轉停止
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showUIAlertCtrl:@"連線異常"];
+                
+            });
+            
+        }
+        
+    }];
+    
+    [task resume];
+    
 }
 
 
--(NSString *)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
+-(void)addProductDetail:(NSString*)orderID  withProduct:(Product *)product {
     
+/* 同步改異步
     //使用get 傳productList 　會超過256 上限
     NSString *urlStr = [NSString stringWithFormat:@"http://localhost:8888/petShop/detail_add_android.php"];
     NSURL *url = [NSURL URLWithString:urlStr];
@@ -149,8 +175,44 @@
     NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     //        NSLog(@"result= %@",result);
     return result ;
+ */
     
+    NSURL *phpURL=[NSURL URLWithString:@"http://localhost:8888/petShop/detail_add_android.php"];
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:phpURL];
+    request.HTTPMethod=@"POST";
+    
+    NSString *postString = [NSString stringWithFormat:@"orderID=%@&productID=%@&name=%@&price=%@&quantity=%@&itemTotal=%@",orderID,product.productID,product.name,product.price,product.quantity,[self getItemTotal:product]];
+    
+    request.HTTPBody=[postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    NSURLSession *session=[NSURLSession  sharedSession];
+    
+    NSURLSessionTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        
+    }];
+    
+    [task resume];
+    
+ 
 }
+
+-(void)deleteCoreDataWithProducts{
+    //刪除coreData內的資料
+    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
+    for (int i = 0; i<productList.count;  i++) {
+        Product *product = productList[i];
+        [helper.managedObjectContext deleteObject:product];
+    }
+    NSError *error = nil ;
+    [helper.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"error saving %@",error);
+    }
+
+}
+
 
 -(NSString *)deleteProductOrder:(NSString*)orderID{
     return @"";
