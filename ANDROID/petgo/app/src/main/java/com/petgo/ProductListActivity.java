@@ -3,6 +3,7 @@ package com.petgo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.petgo.common.Common;
 import com.petgo.model.OrderProduct;
 import com.petgo.model.Product;
@@ -34,6 +38,14 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
         rvProduct = (RecyclerView) findViewById(R.id.productListView);
         rvProduct.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        //创建默认的ImageLoader配置参数
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration
+                .createDefault(this);
+
+        //Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(configuration);
+
     }
 
 
@@ -41,7 +53,7 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        String url = Common.URL + "product_json.php";
+        String url = Common.URL + "product_json_android.php";
         List<Product> products = null;
         try {
             products  =new ProductGetAllTask().execute(url).get();
@@ -103,11 +115,23 @@ public class ProductListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        public void onBindViewHolder(final ViewHolder viewHolder, int position) {
             final Product product = products.get(position);
             Log.i("product",product.toString());
-            int id = product.getProductID();
+
             viewHolder.ivProduct.setImageResource(R.drawable.default_image);
+
+            ImageLoader.getInstance().loadImage(product.getImageUrl(), new SimpleImageLoadingListener(){
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view,
+                                              Bitmap loadedImage) {
+                    super.onLoadingComplete(imageUri, view, loadedImage);
+                    viewHolder.ivProduct.setImageBitmap(loadedImage);
+                }
+
+            });
+
             viewHolder.tvName.setText(product.getName());
             viewHolder.tvPrice.setText(String.valueOf(product.getPrice()));
             viewHolder.ivAdd.setOnClickListener(new View.OnClickListener() {

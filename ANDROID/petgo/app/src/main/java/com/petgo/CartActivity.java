@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.petgo.common.Common;
 import java.util.List;
 
@@ -37,6 +41,13 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         findViews();
+
+        //创建默认的ImageLoader配置参数
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration
+                .createDefault(this);
+
+        //Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(configuration);
     }
 
     @Override
@@ -174,9 +185,20 @@ public class CartActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(CartRecyclerViewAdapter.ViewHolder viewHolder, int position) {
+        public void onBindViewHolder(final CartRecyclerViewAdapter.ViewHolder viewHolder, int position) {
             final OrderProduct orderProduct = orderProducts.get(position);
             viewHolder.ivProduct.setImageResource(R.drawable.default_image);
+
+            ImageLoader.getInstance().loadImage(orderProduct.getImageUrl(), new SimpleImageLoadingListener(){
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view,
+                                              Bitmap loadedImage) {
+                    super.onLoadingComplete(imageUri, view, loadedImage);
+                    viewHolder.ivProduct.setImageBitmap(loadedImage);
+                }
+
+            });
             viewHolder.tvName.setText(orderProduct.getName());
             viewHolder.tvPrice.setText(String.valueOf(orderProduct.getPrice()));
             viewHolder.spQty.setSelection(orderProduct.getQuantity() -1 , true);  //數量會自動加一
