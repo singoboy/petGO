@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -23,14 +24,30 @@ import com.petgo.model.OrderProduct;
 import com.petgo.model.Product;
 import com.petgo.task.ProductGetAllTask;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static com.petgo.common.Common.*;
 
 public class ProductListActivity extends AppCompatActivity {
 
     private RecyclerView rvProduct;
+   private  List<Product> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,32 +69,80 @@ public class ProductListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         String url = Common.URL + "product_json_android.php";
-        List<Product> products = null;
-        try {
-            products  =new ProductGetAllTask().execute(url).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.e("InterruptedException", e.toString());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            Log.e("ExecutionException", e.toString());
-        }
 
-        if (products == null || products.isEmpty()) {
-            Common.showToast(ProductListActivity.this, R.string.msg_NoProductsFound);
-        } else {
-            rvProduct.setAdapter(new ProductsRecyclerViewAdapter(ProductListActivity.this, products));
-        }
-
-        //       products = Arrays.asList(PRODUCTS) ;
-        //Log.i("products", products.toString());
-
+//          sometimes get  The application may be doing too much work on its main thread.!!
+//         this is workaround
+        products = Collections.emptyList();
         rvProduct.setAdapter(new ProductsRecyclerViewAdapter(ProductListActivity.this, products));
+        getAllProduct(url);
+
+//        try {
+//            products  =new ProductGetAllTask().execute(url).get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            Log.e("InterruptedException", e.toString());
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//            Log.e("ExecutionException", e.toString());
+//        }
+//
+//        if (products == null || products.isEmpty()) {
+//            Common.showToast(ProductListActivity.this, R.string.msg_NoProductsFound);
+//        } else {
+//            rvProduct.setAdapter(new ProductsRecyclerViewAdapter(ProductListActivity.this, products));
+//        }
+
+    }
+
+    private void getAllProduct(String url){
+
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder().url(url).build();
+        System.out.println(request);
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Common.showToast(ProductListActivity.this, R.string.msg_NoProductsFound);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                products = parseJackson(response.body().string());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rvProduct.setAdapter(new ProductsRecyclerViewAdapter(ProductListActivity.this, products));
+                      //  rvProduct.getAdapter().notifyDataSetChanged();
+
+                    }
+                });
+            }
+        });
 
 
     }
+
+    private List<Product> parseJackson(String s){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            ArrayList<Product> list =
+                    objectMapper.readValue(s,
+                            new TypeReference<List<Product>>(){});
+            Log.d("JSON",list.size()+"/"+list.get(0));
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
 
     private class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder> {
         private Context context;
