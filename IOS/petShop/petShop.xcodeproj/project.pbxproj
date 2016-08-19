@@ -10,6 +10,7 @@
 		2607DAFAE0F791AE02E3FC75 /* libPods-petShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EBBEC6A8B6F849181EB554 /* libPods-petShop.a */; };
 		471ED8E81D66A48900707A5F /* LookOrderCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 471ED8E71D66A48900707A5F /* LookOrderCtrl.m */; };
 		471ED8EB1D66B9B100707A5F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 471ED8EA1D66B9B100707A5F /* Order.m */; };
+		471ED8EE1D67018400707A5F /* LookDetailCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 471ED8ED1D67018400707A5F /* LookDetailCtrl.m */; };
 		4768A8CF1D24AE4D00C71C91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8CE1D24AE4D00C71C91 /* main.m */; };
 		4768A8D21D24AE4D00C71C91 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8D11D24AE4D00C71C91 /* AppDelegate.m */; };
 		4768A8D81D24AE4D00C71C91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4768A8D61D24AE4D00C71C91 /* Main.storyboard */; };
@@ -44,6 +45,8 @@
 		471ED8E71D66A48900707A5F /* LookOrderCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookOrderCtrl.m; sourceTree = "<group>"; };
 		471ED8E91D66B9B100707A5F /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		471ED8EA1D66B9B100707A5F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		471ED8EC1D67018400707A5F /* LookDetailCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookDetailCtrl.h; sourceTree = "<group>"; };
+		471ED8ED1D67018400707A5F /* LookDetailCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookDetailCtrl.m; sourceTree = "<group>"; };
 		4768A8CA1D24AE4D00C71C91 /* petShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4768A8CE1D24AE4D00C71C91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4768A8D01D24AE4D00C71C91 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 				4E2C53B71D40DE720085A538 /* PetHospitalMapCtrl.m */,
 				471ED8E61D66A48900707A5F /* LookOrderCtrl.h */,
 				471ED8E71D66A48900707A5F /* LookOrderCtrl.m */,
+				471ED8EC1D67018400707A5F /* LookDetailCtrl.h */,
+				471ED8ED1D67018400707A5F /* LookDetailCtrl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				4768A8CF1D24AE4D00C71C91 /* main.m in Sources */,
 				4E7ADC421D38FE9B009163B8 /* Member.m in Sources */,
 				471ED8EB1D66B9B100707A5F /* Order.m in Sources */,
+				471ED8EE1D67018400707A5F /* LookDetailCtrl.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
 				47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */,
 				476FFC0B1D618CEA002BF6C6 /* ShoppingCartCell.m in Sources */,

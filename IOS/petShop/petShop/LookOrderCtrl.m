@@ -7,6 +7,7 @@
 //
 
 #import "LookOrderCtrl.h"
+#import "LookDetailCtrl.h"
 
 @interface LookOrderCtrl ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectView;
@@ -21,10 +22,12 @@
     self.collectView.delegate=self;
     self.collectView.dataSource=self;
     self.collectView.backgroundColor = [UIColor purpleColor];
+    self.orderList= [NSMutableArray array];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.orderList= [NSMutableArray array];
     NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/order_json.php"];
     
     // NSString *parameters = [NSString stringWithFormat:@"memberID=%d",1];
@@ -84,6 +87,22 @@
     return cell;
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"lookDetail"]) {
+        LookDetailCtrl *lookDetailCtrl = segue.destinationViewController;
+        UICollectionViewCell *  cell = (UICollectionViewCell *)sender;
+        NSIndexPath *indexPath = [self.collectView indexPathForCell:cell];
+//        Order *selectOrder = self.orderList[indexPath.row];
+//        lookDetailCtrl.order=selectOrder;
+        NSMutableDictionary *dic = self.orderList[indexPath.row];
+        lookDetailCtrl.orderID =  dic[@"orderID"];
+        lookDetailCtrl.total =  [dic[@"total"] integerValue];
+        
+    }
+
+
+}
 
 
 - (void)didReceiveMemoryWarning {

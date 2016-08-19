@@ -1,15 +1,14 @@
 //
-//  Order.h
+//  LookDetailCtrl.h
 //  petShop
 //
 //  Created by user12 on 2016/8/19.
 //  Copyright © 2016年 user12. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface Order : NSObject
+@interface LookDetailCtrl : UIViewController
 @property  NSString *orderID;
-@property  NSString *date;
 @property  NSInteger total;
 @end

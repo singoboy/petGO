@@ -174,7 +174,7 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle== UITableViewCellEditingStyleDelete) {
-        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪  //NSSTRING isEqualToString 不只會比值還會比型態！！！ NSLOG印看都一樣 XXX!!
+        //先判斷是不是同一個人才可以刪   //是 id不同才不能刪  //NSSTRING isEqualToString 不只會比值還會比型態！！！NSLOG印看都一樣 !!
         
         NSDictionary *dic  =  reserveArray[indexPath.row] ;
         NSString *arrayMemIDStr  = [dic[@"R_MEMBER_ID"] stringValue];
