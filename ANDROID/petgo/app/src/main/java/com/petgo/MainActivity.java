@@ -26,11 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("hello","hello");
         super.onCreate(savedInstanceState);
-        Log.i("hello","hello2");
         setContentView(R.layout.activity_main);
-        Log.i("hello","hello3");
         GridView grid = (GridView)findViewById(R.id.grid);
         grid.setAdapter(new MyGridViewAdapter(this));
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
