@@ -11,6 +11,7 @@
 #import "LoginCtrl.h"
 #import "Member.h"
 #import "CoreDataHelper.h"
+#import "LookOrderCtrl.h"
 
 
 
@@ -25,6 +26,7 @@
 @end
 
 @implementation MemberCtrl
+
 
 
 
@@ -115,6 +117,17 @@
         LoginCtrl *loginCtrl =segue.destinationViewController;
         loginCtrl.delegate = self ;
     }
+    
+    if ([segue.identifier isEqualToString:@"lookOrder"]) {
+        if (member == nil) {
+            [self showUIAlertCtrl:@"請先登入"];
+            return;
+        }
+        LookOrderCtrl *lookOrderCtrl =segue.destinationViewController;
+        lookOrderCtrl.member = member ;
+        
+    }
+    
 }
 -(void)memberGetTotalAmount{
     NSURL *url = [NSURL URLWithString:@"http://localhost:8888/petShop/order_getTotal.php"];
