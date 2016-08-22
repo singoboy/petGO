@@ -468,7 +468,7 @@
                             <constraint firstItem="Qc3-77-UdE" firstAttribute="leading" secondItem="RKW-N3-k3A" secondAttribute="leading" constant="99" id="yp5-BA-MTJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="SOSMap" id="ZO2-Bm-4cL"/>
+                    <tabBarItem key="tabBarItem" title="SOSMap" image="sos.png" id="ZO2-Bm-4cL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mainMapView" destination="U3S-di-7yS" id="Tc3-zX-QhA"/>
@@ -804,7 +804,7 @@
             </objects>
             <point key="canvasLocation" x="-681" y="1249"/>
         </scene>
-        <!--PetGo-->
+        <!--GO-->
         <scene sceneID="qOA-Wi-YaP">
             <objects>
                 <tableViewController storyboardIdentifier="productListCtrl" id="73w-dQ-DP0" customClass="ProductListCtrl" sceneMemberID="viewController">
@@ -847,7 +847,7 @@
                             <outlet property="delegate" destination="73w-dQ-DP0" id="HXm-nt-SDk"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="PetGo" id="Wbo-2X-JuK"/>
+                    <tabBarItem key="tabBarItem" title="GO" image="paw.png" id="Wbo-2X-JuK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCI-kz-E40" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -858,7 +858,7 @@
         <scene sceneID="mUn-0q-ZeL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jpx-9Q-fhr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="shoping cart" id="pmy-Yp-pZs"/>
+                    <tabBarItem key="tabBarItem" title="shoping cart" image="cart.png" id="pmy-Yp-pZs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JEZ-88-8WI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -877,7 +877,7 @@
         <scene sceneID="jJb-KU-Jae">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FDE-rt-r62" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pet Salon" id="AeK-78-hbV"/>
+                    <tabBarItem key="tabBarItem" title="Pet Salon" image="hair.png" id="AeK-78-hbV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6L5-0j-uml">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -896,7 +896,7 @@
         <scene sceneID="kFC-Li-p3N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cmg-0o-a9V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="member" id="58K-X7-C8v"/>
+                    <tabBarItem key="tabBarItem" title="member" image="member.png" id="58K-X7-C8v"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Pi-lw-y7z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -913,6 +913,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart.png" width="50" height="50"/>
+        <image name="hair.png" width="50" height="50"/>
+        <image name="member.png" width="50" height="50"/>
+        <image name="paw.png" width="50" height="50"/>
         <image name="petco" width="300" height="150"/>
+        <image name="sos.png" width="45" height="45"/>
     </resources>
 </document>
