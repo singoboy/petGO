@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.petgo.CartActivity;
+import com.petgo.ExitActivity;
 import com.petgo.MemberActivity;
 import com.petgo.MemberLoginActivity;
 import com.petgo.ProductListActivity;
@@ -28,6 +29,7 @@ public class Common {
             new Category(0, "User", R.drawable.users, MemberActivity.class),
             new Category(1, "Products", R.drawable.paw, ProductListActivity.class),
             new Category(2, "Shooping Cart", R.drawable.shopping, CartActivity.class)
+            , new Category(3, "   Exit", R.drawable.exit, ExitActivity.class)
             //, new Category(3, "Login", R.drawable.product, MemberLoginActivity.class)
     };
 

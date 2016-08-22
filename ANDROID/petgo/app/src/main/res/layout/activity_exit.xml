@@ -7,15 +7,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.petgo.MainActivity">
+    tools:context="com.petgo.ExitActivity">
 
-    <GridView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/grid"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:numColumns="3"
-        android:layout_marginBottom="40dp" />
 </RelativeLayout>

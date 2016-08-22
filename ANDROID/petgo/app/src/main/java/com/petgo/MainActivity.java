@@ -36,8 +36,16 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Class<? extends Activity> activityClass = CATEGORIES[position]
                         .getThisActivity();
-                Intent intent = new Intent(MainActivity.this, activityClass);
-                startActivity(intent);
+
+                if (activityClass.getCanonicalName().equals(ExitActivity.class.getCanonicalName())){
+                    finish();
+                }
+                else{
+                    Intent intent = new Intent(MainActivity.this, activityClass);
+                    startActivity(intent);
+
+                }
+
             }
         });
     }
