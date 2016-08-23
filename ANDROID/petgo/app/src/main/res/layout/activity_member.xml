@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="累積消費金額:"
+        android:text="累積金額:"
         android:id="@+id/textView4"
         android:layout_marginTop="67dp"
         android:layout_below="@+id/textView2"
@@ -55,11 +55,11 @@
         android:layout_height="wrap_content"
         android:text="登入"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4"
         android:onClick="login"
-        android:nestedScrollingEnabled="false" />
+        android:nestedScrollingEnabled="false"
+        android:layout_alignTop="@+id/button2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
     <Button
         android:layout_width="wrap_content"
