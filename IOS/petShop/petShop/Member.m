@@ -10,4 +10,9 @@
 
 @implementation Member
 
+@dynamic memberID ;
+@dynamic memberAccount;
+@dynamic memberName;
+@dynamic memberAddr;
+
 @end

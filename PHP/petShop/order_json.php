@@ -8,7 +8,7 @@ if ( mysqli_connect_errno()){
     die("Can't establish connection from database, ".mysqli_connect_error());
 }
 
-$query = "select * from orders ";
+$query = "select * from orders order by O_Date desc ";
 $result = mysqli_query($connection,$query);
 if ( !$result){
     die("can't execute query ");
