@@ -10,5 +10,13 @@
 
 @implementation Product
 
+@dynamic  productID;
+@dynamic  name;
+@dynamic  price;
+@dynamic  imageName;
+@dynamic  insertTime;
+@dynamic  quantity;
+
 
 @end
+
