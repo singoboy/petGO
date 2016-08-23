@@ -26,7 +26,7 @@ public class Common {
 
     // 功能分類
     public final static Category[] CATEGORIES = {
-            new Category(0, "User", R.drawable.users, MemberActivity.class),
+            new Category(0, " User", R.drawable.users, MemberActivity.class),
             new Category(1, "Products", R.drawable.paw, ProductListActivity.class),
             new Category(2, "Shooping Cart", R.drawable.shopping, CartActivity.class)
             , new Category(3, "   Exit", R.drawable.exit, ExitActivity.class)
