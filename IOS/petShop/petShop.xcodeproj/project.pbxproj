@@ -274,6 +274,7 @@
 				4768A8C81D24AE4D00C71C91 /* Resources */,
 				7743EE33F4D54DD3CAB968C9 /* [CP] Embed Pods Frameworks */,
 				00301B13825CDCDB475E0AC0 /* [CP] Copy Pods Resources */,
+				47D70AE31D6BFAD6009B9C1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -374,6 +375,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		47D70AE31D6BFAD6009B9C1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 07d8feac58159ba30689a31ea646b7f497a82ced c8577734085da11659fdfa537b3f00aaff356e8b771f165e8f06211f5b209648";
+		};
 		7743EE33F4D54DD3CAB968C9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,7 +475,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
