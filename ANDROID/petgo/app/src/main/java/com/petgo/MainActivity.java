@@ -19,6 +19,9 @@ import android.widget.TextView;
 import com.petgo.model.Category;
 
 import static com.petgo.common.Common.CATEGORIES;
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         GridView grid = (GridView)findViewById(R.id.grid);
         grid.setAdapter(new MyGridViewAdapter(this));

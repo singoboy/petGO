@@ -23,6 +23,9 @@
         <activity android:name=".MemberLoginActivity" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".ExitActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="07d8feac58159ba30689a31ea646b7f497a82ced" />
     </application>
 
 </manifest>
