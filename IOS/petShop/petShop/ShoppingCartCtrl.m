@@ -148,13 +148,13 @@
     NSData *data = [NSData dataWithContentsOfURL:imageURL];
     
     cell.name.text = product.name;
-    cell.imageView.image = [UIImage imageWithData:data];
+    cell.thumbImageView.image = [UIImage imageWithData:data];
     cell.price.text =   [NSString stringWithFormat:@"%@",product.price];
     cell.number.text =  [NSString stringWithFormat:@"%@",product.quantity];
     cell.stepper.indexPath = indexPath ;
     cell.stepper.value = [product.quantity doubleValue];
     cell.stepper.minimumValue = 1;
-    
+    [cell setNeedsLayout];
     return cell;
     
 }
@@ -258,6 +258,8 @@
     
     
     [context save:nil];
+    
+    
     
     [self.tableView reloadRowsAtIndexPaths:@[sender.indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
