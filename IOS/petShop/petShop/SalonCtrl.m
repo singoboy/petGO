@@ -93,8 +93,13 @@
     [super viewDidLoad];
     self.tableView.dataSource=self ;
     self.tableView.delegate =self;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.80 green:0.50 blue:0.79 alpha:1.0];
+        self.tableView.rowHeight = 40;
+
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     reserveArray = [NSMutableArray array];
+    
+    self.tableView.layoutMargins = UIEdgeInsetsMake(20, 0, 20, 0);
     
     // Do any additional setup after loading the view.
 }

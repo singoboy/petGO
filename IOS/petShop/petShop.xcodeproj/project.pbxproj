@@ -26,6 +26,7 @@
 		476FFC141D61AD55002BF6C6 /* CartStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFC131D61AD55002BF6C6 /* CartStepper.m */; };
 		47A356EA1D82583B00C00316 /* NSVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A356E71D82583B00C00316 /* NSVTabBarController.m */; };
 		47A356EB1D82583B00C00316 /* NSVBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A356E91D82583B00C00316 /* NSVBarController.m */; };
+		47A356ED1D8269FA00C00316 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 47A356EC1D8269FA00C00316 /* logo.png */; };
 		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
 		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
 		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
@@ -77,6 +78,7 @@
 		47A356E71D82583B00C00316 /* NSVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSVTabBarController.m; sourceTree = "<group>"; };
 		47A356E81D82583B00C00316 /* NSVBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSVBarController.h; sourceTree = "<group>"; };
 		47A356E91D82583B00C00316 /* NSVBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSVBarController.m; sourceTree = "<group>"; };
+		47A356EC1D8269FA00C00316 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		47F89AF21D3878BE00C1B3AD /* MemberCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCtrl.h; sourceTree = "<group>"; };
 		47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCtrl.m; sourceTree = "<group>"; };
 		47F89AF51D38872C00C1B3AD /* RegisterCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterCtrl.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		4E2C53BD1D40E4A20085A538 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				47A356EC1D8269FA00C00316 /* logo.png */,
 				47688ED51D6AD2A100DCA961 /* sos.png */,
 				47688ECB1D6ACEED00DCA961 /* member.png */,
 				47688EC71D6ACD8200DCA961 /* hair.png */,
@@ -337,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A356ED1D8269FA00C00316 /* logo.png in Resources */,
 				4768A8DD1D24AE4D00C71C91 /* LaunchScreen.storyboard in Resources */,
 				47688EC81D6ACD8200DCA961 /* hair.png in Resources */,
 				4E2C53C21D40E4D50085A538 /* Pet_Red.png in Resources */,

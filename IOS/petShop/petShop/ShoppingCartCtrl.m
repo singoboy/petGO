@@ -102,6 +102,7 @@
     }
     
     member =results[0];
+    [self getTotalPrice];
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated{
