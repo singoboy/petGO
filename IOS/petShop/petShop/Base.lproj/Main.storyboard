@@ -250,7 +250,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.036263138055801392" green="0.97797590494155884" blue="0.040664874017238617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HLw-BS-FQY" firstAttribute="top" secondItem="dv5-Vi-wSk" secondAttribute="bottom" constant="16" id="8gI-V3-hzX"/>
                             <constraint firstItem="HLw-BS-FQY" firstAttribute="top" secondItem="nWn-fk-6D2" secondAttribute="bottom" constant="16" id="IYJ-0n-bUo"/>
@@ -467,7 +467,7 @@
                             <constraint firstItem="Qc3-77-UdE" firstAttribute="leading" secondItem="RKW-N3-k3A" secondAttribute="leading" constant="99" id="yp5-BA-MTJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="SOSMap" image="sos.png" id="ZO2-Bm-4cL"/>
+                    <tabBarItem key="tabBarItem" title="SOSMap" image="love.png" id="ZO2-Bm-4cL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mainMapView" destination="U3S-di-7yS" id="Tc3-zX-QhA"/>
@@ -948,8 +948,8 @@
         <image name="cart.png" width="50" height="50"/>
         <image name="hair.png" width="50" height="50"/>
         <image name="logo.png" width="150" height="100"/>
+        <image name="love.png" width="32" height="32"/>
         <image name="member.png" width="50" height="50"/>
         <image name="paw.png" width="50" height="50"/>
-        <image name="sos.png" width="45" height="45"/>
     </resources>
 </document>

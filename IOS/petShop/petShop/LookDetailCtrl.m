@@ -26,6 +26,7 @@
     [super viewDidLoad];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
+    self.tableView.backgroundColor = [UIColor greenColor];
     self.detailList= [NSMutableArray array];
    
     // Do any additional setup after loading the view.

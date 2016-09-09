@@ -23,9 +23,9 @@
     //*****// TabBar Icons Customization //*****//
     
     // To Create the TabBar icons as NSArray
-    NSArray *imagesArray = [NSArray arrayWithObjects:@"paw.png",@"cart.png",@"hair.png",@"member.png",@"sos.png", nil];
+    NSArray *imagesArray = [NSArray arrayWithObjects:@"paw.png",@"cart.png",@"dye.png",@"member.png",@"love.png", nil];
     // To Create the TabBar icons as NSArray for selection time
-    NSArray *selectedimgArray = [NSArray arrayWithObjects:@"paw.png",@"cart.png",@"hair.png",@"member.png",@"sos.png",nil];
+    NSArray *selectedimgArray = [NSArray arrayWithObjects:@"paw.png",@"cart.png",@"dye.png",@"member.png",@"love.png",nil];
      // Customize the tabBar images
     [NSVBarController settabBar:self.tabBar andImages:imagesArray andSelectedImages:selectedimgArray] ;
     
