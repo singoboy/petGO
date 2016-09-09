@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.productArray = [NSMutableArray array];
+    self.tableView.rowHeight = 80;
     
     //    NSLog(@"productJson= %@",self.productArray);
     
@@ -41,6 +42,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.tableView.backgroundColor = [UIColor darkGrayColor];
     //同步取得改成異步取得  0716
 //    NSURL *url =[NSURL URLWithString:@"http://localhost:8888/petShop/product_json.php"];
 //    NSData *data = [NSData dataWithContentsOfURL:url];

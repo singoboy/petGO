@@ -24,6 +24,8 @@
 		4768A8E61D24AFD500C71C91 /* ProductListCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */; };
 		476FFC0B1D618CEA002BF6C6 /* ShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFC0A1D618CEA002BF6C6 /* ShoppingCartCell.m */; };
 		476FFC141D61AD55002BF6C6 /* CartStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 476FFC131D61AD55002BF6C6 /* CartStepper.m */; };
+		47A356EA1D82583B00C00316 /* NSVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A356E71D82583B00C00316 /* NSVTabBarController.m */; };
+		47A356EB1D82583B00C00316 /* NSVBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A356E91D82583B00C00316 /* NSVBarController.m */; };
 		47F89AF41D3878BE00C1B3AD /* MemberCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */; };
 		47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF61D38872C00C1B3AD /* RegisterCtrl.m */; };
 		47F89AFA1D38874800C1B3AD /* LoginCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F89AF91D38874800C1B3AD /* LoginCtrl.m */; };
@@ -71,6 +73,10 @@
 		476FFC0A1D618CEA002BF6C6 /* ShoppingCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartCell.m; sourceTree = "<group>"; };
 		476FFC121D61AD55002BF6C6 /* CartStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartStepper.h; sourceTree = "<group>"; };
 		476FFC131D61AD55002BF6C6 /* CartStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartStepper.m; sourceTree = "<group>"; };
+		47A356E61D82583B00C00316 /* NSVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSVTabBarController.h; sourceTree = "<group>"; };
+		47A356E71D82583B00C00316 /* NSVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSVTabBarController.m; sourceTree = "<group>"; };
+		47A356E81D82583B00C00316 /* NSVBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSVBarController.h; sourceTree = "<group>"; };
+		47A356E91D82583B00C00316 /* NSVBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSVBarController.m; sourceTree = "<group>"; };
 		47F89AF21D3878BE00C1B3AD /* MemberCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCtrl.h; sourceTree = "<group>"; };
 		47F89AF31D3878BE00C1B3AD /* MemberCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCtrl.m; sourceTree = "<group>"; };
 		47F89AF51D38872C00C1B3AD /* RegisterCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterCtrl.h; sourceTree = "<group>"; };
@@ -194,6 +200,10 @@
 		4E918F891D2F4E1900F79408 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				47A356E61D82583B00C00316 /* NSVTabBarController.h */,
+				47A356E71D82583B00C00316 /* NSVTabBarController.m */,
+				47A356E81D82583B00C00316 /* NSVBarController.h */,
+				47A356E91D82583B00C00316 /* NSVBarController.m */,
 				4E6877D41D2E98AD00D3ACBF /* ProductDelegate.h */,
 				4768A8E41D24AFD500C71C91 /* ProductListCtrl.h */,
 				4768A8E51D24AFD500C71C91 /* ProductListCtrl.m */,
@@ -410,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A356EA1D82583B00C00316 /* NSVTabBarController.m in Sources */,
 				471ED8E81D66A48900707A5F /* LookOrderCtrl.m in Sources */,
 				476FFC141D61AD55002BF6C6 /* CartStepper.m in Sources */,
 				4EC932491D2D2CBE004E637C /* ShoppingCartCtrl.m in Sources */,
@@ -428,6 +439,7 @@
 				471ED8EB1D66B9B100707A5F /* Order.m in Sources */,
 				471ED8EE1D67018400707A5F /* LookDetailCtrl.m in Sources */,
 				4EC932521D2D3C9A004E637C /* CoreDataHelper.m in Sources */,
+				47A356EB1D82583B00C00316 /* NSVBarController.m in Sources */,
 				47F89AF71D38872C00C1B3AD /* RegisterCtrl.m in Sources */,
 				476FFC0B1D618CEA002BF6C6 /* ShoppingCartCell.m in Sources */,
 			);

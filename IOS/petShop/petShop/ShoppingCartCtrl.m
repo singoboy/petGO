@@ -71,6 +71,7 @@
     self.tableView.delegate=self ;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     [self getTotalPrice];
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
     
     // Do any additional setup after loading the view.
 }
